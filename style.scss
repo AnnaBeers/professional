@@ -1,0 +1,247 @@
+//
+// IMPORTS
+//
+
+@import "reset";
+@import "variables";
+// Syntax highlighting @import is at the bottom of this file
+
+/**************/
+/* BASE RULES */
+/**************/
+
+html {
+	height: 100%;
+	width: 100%;	
+}
+
+body {
+	background-color: $black;
+	margin-top: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+// Full Page Wrapper
+
+#wrap {
+	min-width: $minWidth;
+	width: 100%;
+	height: 100%;
+}
+
+// "Content" Wrapper
+
+#contentwrap{
+	margin-top: $topMargin;
+	margin-bottom: $bottomMargin;
+	margin-left: auto;
+	margin-right: auto;
+	width: 55%;
+	min-width: 570px;
+	background-color: black;
+
+	@include smallview {
+		// Unsure about margins, RETURN
+		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+		min-width: 0px;
+		background-color: black;
+		overflow: hidden;  
+	}
+
+}
+
+#contentwrap a {
+	color: $white;
+	text-decoration: none;
+}
+
+#contentwrap .bioblock a{
+	color: $link;
+}
+
+#contentwrap .contentblock a {
+	color: $link;
+}
+
+// Header Bar
+
+#headerwrap {
+	color: $white;
+	font-family: $helvetica;
+	font-size: 22px;
+	line-height: 18px;
+
+	@include smallview {
+		margin-bottom: 20px;
+	}
+}
+
+.titleblock {
+	border: 3px $white solid;
+	text-align: center;
+	padding: 20px;
+}
+
+.toolbarblock {
+	font-family: $helvetica;
+	display: table;
+	line-height: 0px;
+	border: 3px $white solid;
+	border-top: 0px $black solid;
+	border-right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 18px;
+}
+
+.toolbaritem {	
+	line-height: 36px;
+	padding: 0px 0px;
+	display: table-cell;
+	border-right: 3px $white solid;
+	color: $white;
+}
+
+.toolbaritem a {
+	display: block;
+	padding: 0px 5px;
+	color: $white
+}
+
+.contactbutton{
+
+	@include smallview {
+		display: none;	
+	}
+}
+
+// Home Buttons
+
+.homewrap {
+	height: 150px;
+	width: 90%;
+	margin: 30px 5% 0px 5%;
+
+
+	@include smallview{
+		height: auto;
+		width: 100%;
+		margin: 0px 0% 0px 0%;
+	}
+}
+
+.homespacer {
+	background-color: $black;
+	min-width: 5%;
+	margin: 0;
+	padding: 0;
+	border: 0px;
+	float: inherit;
+	display: inline-block;
+	min-height: 40px;
+
+	@include smallview{
+		display: none;
+	}
+}
+
+.homeblock {
+	border: 3px $white solid;
+	color: $white;
+	font-family: Helvetica, sans-serif;
+	font-size: 18px;
+	margin: 0px;
+	line-height: 0px;
+	text-align: center;
+	width: 45%;
+	height: 150px;
+	display: inline-block;
+	position: relative;
+
+	@include smallview{
+		width: 90%;
+		margin-right: 5%;
+		margin-left: 5%;
+		margin-top: 0px;
+		margin-bottom: 20px;
+		height: 170px;
+	}
+
+	@include tiny-mobile{
+		height: 140px;	
+	}
+
+}
+
+.homeblock img{
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	clip: rect(0px,500px,150px,0px);
+	width: 100%;
+	height: auto;
+
+	@include smallview {
+		clip: rect(0px,520px,170px,0px);
+	}
+
+	@include tiny-mobile {
+		clip: rect(0px,520px,140px,0px);
+	}
+
+}
+
+.homecaption {
+	font-size: 22px;
+	position: absolute;
+	background: rgba(0,0,0,1.0);
+	border: solid 3px #E0E0E0;
+	color: $white;
+	display: table;
+	height: 32px;
+	width: 50%;
+	top: 38%;
+	left: 25%;
+	z-index: 1;
+	opacity: 0;
+	-webkit-transition: opacity 300ms;
+	-moz-transition: opacity 300ms;
+	-o-transition: opacity 300ms;
+	transition: opacity 300ms;
+
+	@include smallview {
+		width: 50%;
+		top: 115px;
+		left: 25%;
+		z-index: 1;
+		opacity: 1;
+		-webkit-transition: opacity 300ms;
+		-moz-transition: opacity 300ms;
+		-o-transition: opacity 300ms;
+		transition: opacity 300ms;
+	}
+
+	@include tiny-mobile {
+		top: 105px;	
+	}
+}
+
+.homecaption a {
+	text-decoration: none;	
+	color: $white	
+}
+
+.homeblock:hover .homecaption {
+	opacity: 1;	
+}
+
+.homecaption span {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
