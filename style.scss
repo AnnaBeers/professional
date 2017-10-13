@@ -68,7 +68,7 @@ body {
 	color: $link;
 }
 
-// Header Bar
+// Header, Footer and ToolBar
 
 #headerwrap {
 	color: $white;
@@ -78,6 +78,20 @@ body {
 
 	@include smallview {
 		margin-bottom: 20px;
+	}
+}
+
+#footerblock {
+	font-family: $helvetica;
+	margin-top: 40px;
+	height: 5px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 3px solid $white
+
+	@include smallview{
+		margin-top: 20px;
 	}
 }
 
@@ -118,6 +132,81 @@ body {
 	@include smallview {
 		display: none;	
 	}
+}
+
+// Content
+
+.contentblock {
+	margin-top: 40px;
+	padding: 0;
+	border: 3px $white solid;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+}
+
+.contentdate {
+	position: relative;
+	border: 3px	$white solid;
+	border-top: none;
+	border-right: none;
+	padding: 10px;
+	top: 0px;
+	right: 0px;
+	font-size: 18px;
+	float: right 
+
+	@include smallview {
+		border-left: none;
+		text-align: center;
+		width: 100%;
+		height: auto;
+		margin-right: auto;
+		margin-left: auto;
+	float: left;  // why did float change?
+}
+
+}
+
+.contenthead{
+	text-decoration: none;
+	font-size: 36px;
+	padding: 35px 20px 30px 30px;
+	margin: 15px 40px 30px 40px;
+	border-bottom: 3px solid;
+	line-height: 42px;
+	color: $white;
+
+	@include smallview{
+		padding: 55px 20px 25px 30px;
+		margin: 15px 0px 30px 0px;
+	}
+}
+
+.contenttext {
+	margin: 0px 40px 30px 40px;
+
+	@include smallview{
+		margin: 0px 8% 30px 8%;
+	}
+}
+
+// Page 404
+
+#page404 {
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	margin: 100px 20%;	
+	text-align: center;	
+}
+
+#page404 a {
+	color: $link;
+	text-decoration: none;	
 }
 
 // Home Buttons
@@ -244,4 +333,172 @@ body {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
+}
+
+// Recent
+
+.recentblock {
+	padding: 45px 0px 5px 0px;
+	width: 55%;
+	margin: 0 0 0 25%;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 22px;
+	line-height: 18px;
+	text-align: left;
+
+	@include smallview {
+		padding: 25px 0px 0px 0px;
+		width: 90%;
+		margin: 0 4%;
+	}
+}
+
+.recentblock li {
+	font-size: 18px;	
+	margin-bottom: 8px;
+	line-height: 22px;
+}
+
+.recentblock ul {
+	margin: 0;	
+}
+
+.recentblock a {
+	color: inherit	
+}
+
+// Bio
+
+.bioblock {
+	padding: 10px 30px 20px 40px;
+	width: 70%;
+	margin: 0 auto;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.biopic{
+	margin-right: 35%;
+	margin-left: 35%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	@include smallview{
+		margin: 0px;
+		width: 84%;
+	}
+}
+
+.biopic img {
+	width: 100%;
+
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+// Projects
+
+.projectblock {
+	border: 3px $white solid;
+	padding: 0;
+	height: 150px;
+	width: 85%;
+	margin: 30px auto 0px auto;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	position: relative;
+
+	@include smallview {
+		height: 200px;
+		width: 98%;
+		margin: 30px 0% 30px 0%;
+	}
+
+	@include mobile {
+		height: 275px;
+		width: 98%;
+		margin: 30px 0% 30px 0%;
+	}
+
+	@include tiny-mobile{
+		height: 300px;	
+	}
+}
+
+.projecticon {
+	width: 30%;	
+	overflow: hidden;
+	height: 100%;
+	border-right: 3px $white solid;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+
+	@include mobile {
+		width: 100%
+		height: 100px;
+		display: block;
+		float: none;
+	}
+}
+
+.projecticon img {
+	height: 100%;
+
+	@include mobile {
+		height: auto;
+		width: 400px;
+	}
+}
+
+.projectdesc {
+	display: inline-block;
+	width: 60%;
+	height: 100%;
+	float: left;
+	margin: 14px 22px;
+
+	@include smallview {
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+		float: left;
+		margin: 14px 22px;
+	}
+
+	@include mobile {
+		display: inline-block;
+		width: 90%;
+		height: 50%;
+		float: left;
+		margin: 14px 22px;
+	}
+
+}
+
+.projecthead {
+	font-size: 18px;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.projecttext {
+	font-size: 14px;	
 }
