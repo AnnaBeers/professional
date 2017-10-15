@@ -1,0 +1,32 @@
+---
+layout: default
+header-title: blog
+---
+
+    <div class="recentblock">
+    Recent posts<br /><br />
+    <ul>
+
+    {% for post in site.categories.blog %}
+
+    <a href={{post.permalink}}><li>[{{post.category}}] {{post.title}}</li></a>
+
+    {% endfor %}
+
+    </ul>
+    </div>
+
+  {% for post in site.categories.blog %}
+
+  <div class="contentblock">
+  <div class="contentdate">{{ post.date | date: "%b %-d, %Y" }}</div>
+  <a href={{post.permalink}}><div class="contenthead">{{ post.title }}</div></a>
+  <div class="contenttext">
+
+  {{ post.content }}
+
+    </div>
+  </div>
+
+
+  {% endfor %}

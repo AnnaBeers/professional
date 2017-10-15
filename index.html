@@ -1,30 +1,42 @@
 ---
 layout: default
+header-title: "by Andrew Beers"
 ---
 
     <div class="homewrap">
-      <div class="homeblock"><a href="http://www.anderff.com/about"><div class="homecaption"><span>Bio</span></div><img src="./bio_pic2.png" ></a></div>
+      <div class="homeblock"><a href="/about"><div class="homecaption"><span>Bio</span></div><img src="/resources/bio_pic2.png" ></a></div>
       <div class="homespacer"></div>
-      <div class="homeblock"><a href="http://www.anderff.com/ABeers_Resume.pdf"><div class="homecaption"><span>Resume</span></div><img src="./resume_pic.png" ></a></div>
+      <div class="homeblock"><a href="/resources/ABeers_Resume.pdf"><div class="homecaption"><span>Resume</span></div><img src="/resources/resume_pic.png" ></a></div>
     </div>
     <div class="homewrap">
-      <div class="homeblock"><a href="http://www.anderff.com/projects"><div class="homecaption"><span>Projects</span></div><img src="./IceScreenshot.PNG"></a></div>
+      <div class="homeblock"><a href="/projects"><div class="homecaption"><span>Projects</span></div><img src="/resources/IceScreenshot.PNG"></a></div>
       <div class="homespacer"></div>
-      <div class="homeblock"><a href="http://www.anderff.com/blog"><div class="homecaption"><span>Blog</span></div><img src="./blog_pic.png"></a></div>
+      <div class="homeblock"><a href="/blog"><div class="homecaption"><span>Blog</span></div><img src="/resources/blog_pic.png"></a></div>
     </div>
+
     <div class="recentblock">
     Recent posts<br /><br />
     <ul>
-    <a href="http://www.anderff.com/projects/ice"><li>[projects] Grand Banks Iceberg Map</li></a>
-    <a href="http://www.anderff.com/blog/archive/site-welcome"><li>[blog] Hello! Welcome to the site.</li></a>
+
+  {% for post in site.posts limit:20 %}
+
+    <a href={{post.permalink}}><li>[{{post.category}}] {{post.title}}</li></a>
+
+  {% endfor %}
+
     </ul>
     </div>
-    <div class="contentblock">
-      <div class="contentdate">May 19, 2016</div>
-      <a href="http://www.anderff.com/blog/archive/site-welcome"><div class="contenthead">Welcome to the site!</div></a>
-      <div class="contenttext">Hello!<br />
-      <br />
-      I'm Andrew Beers. and this is a space for me to write, keep a resume, and post some projects that I've been working on. I expect to be redesigning this site frequently in the next few weeks, so excuse me if some things look a little empty or... <em>off.</em><br />
-      <br />
-      You can find some more contact information in the <a name="About" href="http://www.anderff.com/about">About</a> section in the toolbar. Soon, I will be uploading projects - data visualizations, other fun little things - in the <a name="Projects" href="http://www.anderff.com/projects">Projects</a> tab. There's an iceberg visualization from my undergrad thesis work there now. When I get around to blogging, you should be able to find those posts in the <a name="Blog" href="http://www.anderff.com/blog">Blog</a> tab. Both projects and blog posts should also appear on the front page if you are just scrolling through. </div>
-    </div>
+
+  {% for post in site.categories.blog limit:7 %}
+
+  <div class="contentblock">
+  <div class="contentdate">{{ post.date | date: "%b %-d, %Y" }}</div>
+  <a href={{post.permalink}}><div class="contenthead">{{ post.title }}</div></a>
+  <div class="contenttext">
+
+  {{ post.content }}
+
+  </div>
+  </div>
+
+  {% endfor %}

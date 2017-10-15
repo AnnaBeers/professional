@@ -1,0 +1,14 @@
+---
+layout: default
+header-title: blog
+---
+
+<div class="contentblock">
+  <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+  <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+  <div class="contenttext">
+
+    {{ content }}
+
+</div>
+</div>

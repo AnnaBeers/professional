@@ -1,0 +1,20 @@
+---
+layout: default
+header-title: projects
+---
+
+    {% for post in site.categories.projects %}
+
+<a href={{post.permalink}}>
+    <div class="projectblock">
+        <div class="projecticon"><img src={{post.icon}}></div>
+        <div class="projectdesc">
+            <div class="projecthead">{{post.title}}</div>
+            <div class="projecttext"><em>{{ post.date | date: "%b %-d, %Y" }}</em><br /><br />{{post.blurb}}</div>
+        </div>
+    </div>
+</a>
+
+    {% endfor %}
+
+

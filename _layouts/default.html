@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,7 @@
 	{% include meta.html %}
    	<!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+    <![endif]-->
 
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
@@ -18,7 +17,12 @@
 	<div id="wrap">
 		<div id="contentwrap">
 
-			{% include header.html %}
+<div id="headerwrap">
+  <a href="/index" ><div class="titleblock">anderff.com<br />
+    <br />
+  {% if page.header-title %}{{ page.header-title }}{% endif %}</div></a>
+            {% include header.html %}
+</div>
 
 			{{ content }}
 
