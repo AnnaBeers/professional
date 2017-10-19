@@ -20,7 +20,7 @@ header-title: blog
 
   <div class="contentblock">
   <div class="contentdate">{{ post.date | date: "%b %-d, %Y" }}</div>
-  <a href="{{ site.baseurl }}/{{post.permalink}}"><div class="contenthead">{{ post.title }}</div></a>
+  <a href="{{ site.baseurl }}{{post.url}}"><div class="contenthead">{{ post.title }}</div></a>
   <div class="contenttext">
 
   {{ post.content }}

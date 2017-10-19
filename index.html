@@ -20,7 +20,7 @@ header-title: "by Andrew Beers"
 
   {% for post in site.posts limit:20 %}
 
-    <a href={{post.permalink}}><li>[{{post.category}}] {{post.title}}</li></a>
+    <a href={{ site.baseurl }}{{post.url}}><li>[{{post.category}}] {{post.title}}</li></a>
 
   {% endfor %}
 
@@ -31,7 +31,7 @@ header-title: "by Andrew Beers"
 
   <div class="contentblock">
   <div class="contentdate">{{ post.date | date: "%b %-d, %Y" }}</div>
-  <a href={{post.permalink}}><div class="contenthead">{{ post.title }}</div></a>
+  <a href={{ site.baseurl }}{{post.url}}><div class="contenthead">{{ post.title }}</div></a>
   <div class="contenttext">
 
   {{ post.content }}
