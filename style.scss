@@ -46,7 +46,7 @@ body {
 	margin-right: auto;
 	width: 30%;
 	min-width: 570px;
-	background-color: black;
+	background-color: $black;
 
 	@include smallview {
 		// Unsure about margins, RETURN
@@ -56,7 +56,7 @@ body {
 		margin-right: auto;
 		width: 90%;
 		min-width: 0px;
-		background-color: black;
+		background-color: $black;
 		overflow: hidden;  
 	}
 
@@ -147,18 +147,19 @@ body {
 .contentblock {
 	margin-top: 40px;
 	padding: 0;
-	border: $white 3px solid;
-	color: $white;
-	font-family: $helvetica;
-	font-size: 18px;
-	line-height: 26px;
+	border: $black 3px solid;
+	color: $black;
+	font-family: $georgia;
+	font-size: 15px;
+	line-height: 22px;
 	text-align: left;
-
+	background-color: $white;
 }
 
 .contentdate {
+	font-family: $helvetica;
 	position: relative;
-	border: 3px	$white solid;
+	border: 3px	$black solid;
 	border-top: none;
 	border-right: none;
 	padding: 10px;
@@ -180,13 +181,14 @@ body {
 }
 
 .contenthead{
+	font-family: $helvetica;
 	text-decoration: none;
-	font-size: 36px;
-	padding: 35px 20px 30px 30px;
+	font-size: 40px;
+	padding: 50px 20px 30px 30px;
 	margin: 15px 40px 30px 40px;
 	border-bottom: 3px solid;
 	line-height: 42px;
-	color: $white;
+	color: $black;
 
 	@include smallview{
 		padding: 55px 20px 25px 30px;
