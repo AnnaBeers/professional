@@ -67,10 +67,6 @@ body {
 	text-decoration: none;
 }
 
-#contentwrap .bioblock a{
-	color: $link;
-}
-
 #contentwrap .contentblock a {
 	color: $link;
 }
@@ -425,6 +421,61 @@ body {
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
+
+.bioblock a{
+	color: $link;
+}
+
+// Portfolio
+
+.portfolioblock {
+	padding: 40px 30px 20px 30px;
+	width: 100%;
+	margin: 0 auto;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.portfolioblock img {
+	width: 100%;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+.portfoliohead {
+	font-family: $helvetica;
+	text-decoration: none;
+	font-size: 40px;
+	padding: 30px 5px 30px 5px;
+	margin: 15px 5px 30px 5px;
+	border-bottom: 3px solid;
+	line-height: 42px;
+	color: $black;
+
+	@include smallview{
+		padding: 55px 20px 25px 30px;
+		margin: 15px 0px 30px 0px;
+	}
+}
+
+.portfolioblock a{
+	color: $link !important;
 }
 
 // Projects Directory

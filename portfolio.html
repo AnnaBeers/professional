@@ -1,0 +1,29 @@
+---
+layout: portfolio
+header-title: Portfolio
+---
+
+<div class="portfolioblock">
+
+<img src="{{ site.baseurl }}/resources/bio_pic4.jpg" alt=""{{ site.baseurl }}/>
+<br />
+<br />
+
+    Hi!<br /><br />I'm Andrew Beers. I'm a graduate of Brown University living in Boston and working at the <a href="https://www.martinos.org/lab/qtim">Quantitative Tumor Imaging Lab</a> at the Martinos Center for Biomedical Imaging. I'm interested in deep learning, data visualization 
+    Want to reach me? For now, send me a message via <a target="_blank" href="https://www.linkedin.com/in/andrewlbeers">LinkedIn</a>, <a target="_blank" href="https://www.facebook.com/AndrewBeers">Facebook</a>, or email (andrew underscore beers at alumni . brown . edu) and I'll get back to you when I can.
+
+</div>
+
+{% for post in site.categories.portfolio %}
+
+<a href="{{ site.baseurl }}{{post.url}}">
+    <div class="projectblock">
+        <div class="projecticon"><img src="{{ site.baseurl }}{{post.icon}}"></div>
+        <div class="projectdesc">
+            <div class="projecthead">{{post.title}}</div>
+            <div class="projecttext"><br />{{post.blurb}}</div>
+        </div>
+    </div>
+</a>
+
+{% endfor %}
