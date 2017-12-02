@@ -1,0 +1,31 @@
+---
+layout: portfolio
+header-title: Portfolio
+title:  "DeepNeuro"
+icon: "/resources/portfolio/deepneuro_small.png"
+date:   2017-11-30
+category: portfolio
+blurb: "An open-source utility for segmenting glioblastoma into multi-modal brain MRI. Uses Docker containers to ensure interoperability. Currently in use in glioblastoma clinical trials at Mass General Hospital, and is being tested at UCSF, Duke, and the Tata Memorial Hospital in India."
+---
+
+<div class="contentblock">
+  <div class="contenttext">
+
+  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
+
+    DeepNeuro is a software package for using deep learning models to problems in neuroradiology. Currently, its one use case is multi-tissue segmentation of glioblastoma based off of contrast-enhanced MR scans. DeepNeuro will be the platform for all software applications developed by the Quantiative Tumor Imaging Lab at the Martinos Center. See it on Github <a href='https://github.com/QTIM-Lab/DeepNeuro'>here</a>, as well as its predecessor with a less marketable name, <a href='https://github.com/QTIM-Lab/qtim_gbmSegmenter'>qtim_gbmSegmenter</a>. I am the sole creator of both projects.
+
+    The glioblastoma segmentation module in DeepNeuro uses a 3D U-Net model built in Keras with a Tensorflow backend. Many segmenters based on deep learning have struggled with false positive -- healthy tissue being marked as tumor. Our model gets around this by constraining predictions of "enhancing tumor", usually a signal of aggressive tumor growth, to those areas already identified as tumor edema, usually a wider area that in glioblastomas almost always surrounds the enhancing tumor. This has added consistency to segmentations necessary to clinical usage, and has reduced the amount of time spent on quality control by our clinician significantly. We've also built a pre-processing pipeline that reduces differences between scans from different institutions, thus increasing the reproduciblity of our results.
+
+    A frequent problem in neuroimaging is that many of the most useful, publication-supported data analysis methods are split between a thousand different packages, each with different and highly-specific installation requirements. This prevents the easy distribution of software packages that wish to integrate these softwares together. We get past this by deploying DeepNeuro and qtim_gbmSegmenter in a nvidia-enabled Docker container. Docker containers are similar to virtual machines, and are effectively effecient ways to run single-application VMs from an internal saved state. NVIDIA has extended the Docker model to add support for their GPUs -- essential for quick inference time in deep learning models.
+
+    DeepNeuro / qtim_gbmSegmenter is in use in six glioblastoma clinical trials at Massachusetts General Hospital, and is being tested at UCSF, Duke, and Tata Memorial Hospital in India. It was used in the following publications:
+
+
+
+
+    <br />
+    <br />
+
+</div>
+</div>

@@ -1,0 +1,33 @@
+---
+layout: portfolio
+header-title: Portfolio
+title:  "DCE-MRI Accuracy Research"
+icon: "/resources/portfolio/deepneuro_small.png"
+date:   2017-5-30
+category: portfolio
+blurb: "An open-source utility for segmenting glioblastoma in brain MRI. Uses Docker containers to ensure interoperability. Currently in use in glioblastoma clinical trials at Mass General Hospital, and is being tested at UCSF, Duke, and the Tata Memorial Hospital in India."
+---
+
+<div class="contentblock">
+  <div class="contenttext">
+
+  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
+
+    DCE-MRI is a "4D" imaging set in which 3D MRI volumes of a patient are captured at regular intervals, usually on the range of every 1-10 seconds. DCE-MRI usually tracks the progress of a high-contrast bolus of gadolinium injected into a patient with a certain pathology, usually cancer. This contrast agent is carried through the blood, and often accumulates in areas of aggressive tumor expansion. By analyzing the rate at which gadolinium accumulates in certain tissues, as well as the rate at which it is removed, one can infer certain dynamics about fluid transfer in these tissues.<br />
+    <br />
+    Two examples of these properties are "ktrans" and "ve", variables that represent proxies for membrane permeability and extracellular space, respectively. Within tumors, the magnitude of these values has some correlation with patient prognosis, so they have been deemed important to measure. One acquires these variables by fitting, element-wise, the time curves found in 4D DCE-MRI volumes using a well-known model called the Tofts model. Each voxel in 3D space will thus have one ktrans and one ve associated with it, thus creating 3D ktrans and ve "volumes" from the original 4D DCE-MRI.<br />
+    <br />
+    Many software packages exist to extract ktrans and ve maps from DCE-MRI scans, but research in my lab has suggested that A) different software packages produce different ktrans and ve values on the same scan and that B) most of these software packages have systemic biases that produce incorrect ktrans and ve values in many scenarios. To respond to this problem, I created a ktrans/ve software that outperformed all other existing packages on standardized "digital phantom" datasets. You can see a paper detailing our algorithm's superior results here:. Matlab implementations of our software is available here, and a Python implementation is included in my all-purpose imaging package, qtim_tools.<br />
+    <br />
+    In my mind, however, the problem of fitting accurate ktrans/ve volumes is not solved. Our software performed well because of certain de-noising it features it included when analyzing time-curve signals. It was thus very accurate on the digital phantoms referenced in the previous paper, which had an extremely regular spatial structure that is easy to denoise. Patient data has a very heterogenous spatial structure that may very well be harder to denoise than the digital phantom, and thus produce worse results if not specifically anticipated in developers' denoising algorithms.<br />
+    <br />
+    To address this problem, I took an existing dataset of patients with glioblastoma and DCE-MRI scans, and created "digital patient phantoms". These are phantom DCE-MRIs where ktrans and ve values are known, but are arranged in the exact same spatial structure that one would expect in a patient. I generated these by generating ktrans and ve maps from the original raw patient datasets, and then integrating them back into "ideal" 4D volumes for which the original ktrans and ve maps would by definition be ground-truth. These maps would look like the original patients, but be totally absent of noise. Because we know their ground truth values, they can then be used to evaluate the performance of different ktrans/ve fitting softwares. An abstract detailing these phantoms can be found here: <br />
+    <br />
+    I am now working with a team at Intel-Labs to add artifical noise to some of these phantoms -- an abstract has been accepted for effeciently adding artificial deformable motion to phantoms here: . In the future, we intend to use these phantoms to once again compare softwares for fitting ktrans/ve values, but this time in a much more realistic noise environment. We also intend to make a Python package that can facilitating downloading and adding noise to this new phantom dataset.
+
+
+    <br />
+    <br />
+
+</div>
+</div>
