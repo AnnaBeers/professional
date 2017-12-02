@@ -430,7 +430,7 @@ body {
 // Portfolio
 
 .portfolioblock {
-	padding: 40px 30px 20px 30px;
+	padding: 40px 30px 10px 30px;
 	width: 100%;
 	margin: 0 auto;
 	color: $white;
@@ -445,11 +445,16 @@ body {
 	}
 }
 
-.portfolioblock img {
-	width: 100%;
+.portfolioimage {
 	max-width: 400px;
+	font-size: 12px;
+	line-height: 15px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.portfolioblock img {
+	width: 100%;
 	display: block;
 
 	@include smallview{
