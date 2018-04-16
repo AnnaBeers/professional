@@ -24,9 +24,11 @@ $lightGray: #eee;
 $white: #E0E0E0;
 
 // Font stacks
-$helvetica: "Trebuchet MS", Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$georgia: Georgia, serif;
+// $helvetica: "Trebuchet MS", Helvetica, Arial, sans-serif;
+// $georgia: Georgia, serif;
+// Temporary Replacement font stacks taken from Distill Pub
+$helvetica: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+$georgia: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
 
 // Mobile breakpoints
 
