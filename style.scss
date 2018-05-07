@@ -101,7 +101,17 @@ body {
 .titleblock {
 	border: $white 3px solid;
 	text-align: center;
-	padding: 20px;
+	padding: 15px 0px 25px 0px;
+	font-size: 70px;
+	line-height: 80px;
+}
+
+.sub_titleblock {
+	border: $white 3px solid;
+	text-align: center;
+	padding: 15px 0px 20px 0px;
+	font-size: 30px;
+	line-height: 42px;
 }
 
 .toolbarblock {
@@ -379,6 +389,26 @@ body {
 
 .recentblock a {
 	color: inherit	
+}
+
+// Misc
+
+.emptyblock {
+	padding: 55px 0px 25px 0px;
+	width: 100%;
+	margin: 0;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	/*font-style: italic;*/
+
+	@include smallview {
+		padding: 0px 0px 25px 0px;
+		width: 90%;
+		margin: 0 4%;
+	}
 }
 
 // Bio

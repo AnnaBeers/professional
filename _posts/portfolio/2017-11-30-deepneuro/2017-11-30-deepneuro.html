@@ -8,6 +8,16 @@ category: portfolio
 blurb: "An open-source utility for segmenting glioblastoma in MRI. Currently in use in glioblastoma clinical trials at Mass General Hospital, and is being tested at UCSF, Duke, and the Tata Memorial Hospital in India."
 ---
 
+<div class="contentblock">
+  <div class="contenttext">
+
+  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
+
+    DeepNeuro is a software package built for using deep learning models to solve problems in neuroradiology. Currently, its one use case is multi-tissue segmentation of glioblastoma based off of contrast-enhanced MR scans. DeepNeuro will be the platform for all software applications developed by the Quantiative Tumor Imaging Lab at the Martinos Center. See it on Github <a href='https://github.com/QTIM-Lab/DeepNeuro'>here</a>. If you want to be able to segment tumors today, check out its predecessor with a less marketable name, <a href='https://github.com/QTIM-Lab/qtim_gbmSegmenter'>qtim_gbmSegmenter</a>. I am the sole creator of both projects.<br />
+
+      </div>
+  </div>
+
 <div class="portfolioblock">
 
 <div class="portfolioimage">
@@ -21,9 +31,6 @@ blurb: "An open-source utility for segmenting glioblastoma in MRI. Currently in 
 <div class="contentblock">
   <div class="contenttext">
 
-  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
-
-    DeepNeuro is a software package built for using deep learning models to solve problems in neuroradiology. Currently, its one use case is multi-tissue segmentation of glioblastoma based off of contrast-enhanced MR scans. DeepNeuro will be the platform for all software applications developed by the Quantiative Tumor Imaging Lab at the Martinos Center. See it on Github <a href='https://github.com/QTIM-Lab/DeepNeuro'>here</a>. If you want to be able to segment tumors today, check out its predecessor with a less marketable name, <a href='https://github.com/QTIM-Lab/qtim_gbmSegmenter'>qtim_gbmSegmenter</a>. I am the sole creator of both projects.<br />
     <br />
     The glioblastoma segmentation module in DeepNeuro uses a 3D U-Net model built in Keras with a Tensorflow backend. Many segmenters based on deep learning have struggled with false positives -- healthy tissue being marked as tumor. Our model gets around this by constraining predictions of "enhancing tumor", usually a signal of aggressive tumor growth, to those areas already identified as tumor edema, usually a wider area that in glioblastoma almost always surrounds the enhancing tumor. This has added a consistency to segmentations that is necessary for clinical usage, and has reduced the amount of time spent on quality control by our clinician significantly. We've also built a pre-processing pipeline that reduces differences between scans from different institutions, thus increasing the reproduciblity of our results. <br />
     <br />
