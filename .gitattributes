@@ -1,0 +1,2 @@
+/resources/projects/2018-05-09-russian-ads/data filter=lfs diff=lfs merge=lfs -text
+/resources/projects/2018-05-09-russian-ads/data/** filter=lfs diff=lfs merge=lfs -text
