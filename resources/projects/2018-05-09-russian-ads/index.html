@@ -2,14 +2,17 @@
 <!-- saved from url=(0033)http://jiren.github.io/filter.js/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <link href="./jiren.github.io_files/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
-  <link href="./jiren.github.io_files/jquery-ui-1.10.2.custom.min.css" media="screen" rel="stylesheet" type="text/css">
-  <link href="./jiren.github.io_files/stream.css" media="screen" rel="stylesheet" type="text/css">
-  <script src="./jiren.github.io_files/jquery-1.11.3.min.js" type="text/javascript"></script>
-  <script src="./jiren.github.io_files/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
-  <script src="./jiren.github.io_files/filter.min.js" type="text/javascript"></script>
-  <script src="./jiren.github.io_files/russian-ads.js" type="text/javascript"></script>
-  <script src="./jiren.github.io_files/index.js" type="text/javascript"></script>
+  <link href="./russian-ads-files/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./russian-ads-files/jquery-ui-1.10.2.custom.min.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./russian-ads-files/stream.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./russian-ads-files/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="./russian-ads-files/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+  <script src="./russian-ads-files/filter.min.js" type="text/javascript"></script>
+  <script src="./russian-ads-files/russian-ads.js" type="text/javascript"></script>
+  <script src="./russian-ads-files/index.js" type="text/javascript"></script>
+  <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
+  <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -17,8 +20,8 @@
 
   <div class="container-fluid">
     <div class=col-md-8>
-    <h1 class="title">Russian Ad Explorer</h1>
-  </div>
+      <h1 class="title">Russian Ad Explorer</h1>
+    </div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 menu-tab">About</div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 menu-tab">Download Dataset</div>
   </div>
@@ -51,12 +54,12 @@
 
     </div>
 
-    <div class="container-fluid">
-    <div class="searchbar cold-md-12">
-      <label class="sr-only" for="searchbox">Search</label>
-      <input type="text" class="form-control" id="searchbox" style="font-size: 24px; height: 36px" placeholder="Search Ad Text … (e.g. 'refugee', 'police', 'bernie', 'LGBT', 'gun')">
+    <div class="container-fluid" style="margin: 40px 0">
+      <div class="searchbar cold-md-12">
+        <label class="sr-only" for="searchbox">Search</label>
+        <input type="text" class="form-control" id="searchbox" style="font-size: 24px; height: 36px" placeholder="Search Ad Text … (e.g. 'refugee', 'police', 'bernie', 'LGBT', 'gun')">
+      </div>
     </div>
-  </div>
 
     <div class="container-fluid">
       <div class="col-md-4 filter-row">
@@ -86,7 +89,8 @@
           </div>
 
           <div class="container-fluid">
-            <div class="col-md-3 filter-row">
+
+<!--             <div class="col-md-3 filter-row">
               <legend>Sort By..</legend>
               <button type="button" class="btn btn-primary sort-button", value='ad_creation_date'>Date</button>
               <button type="button" class="btn btn-primary sort-button", value='ad_clicks'>Clicks</button>
@@ -94,69 +98,227 @@
               <button type="button" class="btn btn-primary sort-button", value='ad_spend'>Cost</button>
               <button type="button" class="btn btn-primary sort-button", value='efficiency_clicks'>Efficiency (Clicks)</button>
               <button type="button" class="btn btn-primary sort-button", value='efficiency_impressions'>Efficiency (Impressions)</button>
-            </div>
-          </div>
+            </div> -->
 
-          <!-- /.col-md-3 -->
-          <div class="col-md-12">
-            <div class="row">
-              <div class="content col-md-12">
-                <div id="pagination" class="russian-ads-pagination col-md-9"></div>
-                <div class="col-md-3 content">
-                  Per Page: <span id="per_page" class="content"></span>
-                </div>
+            <div class="col-md-3 filter-row">
+              <legend>Sort By..</legend>
+              <div id="radios" class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default" style="display: none">
+                  <input type="radio" class="sort-button" value="ad_creation_date"/> Creation Date
+                </label>
+                <label id="sort-button-click" class="btn btn-default">
+                  <input type="radio" class="sort-button" value="ad_clicks" /> Clicks
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" class="sort-button" value="ad_impressions" /> Impressions
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" class="sort-button" value="ad_spend" /> Cost (RUB)
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" class="sort-button" value="efficiency_clicks" /> Efficiency (Clicks)
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" class="sort-button" value="efficiency_impressions" /> Efficiency (Impressions)
+                </label>
               </div>
             </div>
 
-            <div class="russian-ads row" id="russian-ads"> </div>
-          </div>
-          <!-- /.col-md-9 -->
+            <div class="col-md-3 filter-row">
 
-          <!-- /.container-fluid -->
-
-          <script id="russian-ad-template" type="text/html">
-            <div class="col-md-3 ru">
-              <div class="thumbnail">
-                <span class="label label-success click"><span class='.ad_clicks_label'><%= ad_clicks %> Clicks</span><span class='.ad_spend_label' style="display: none"><%= ad_spend %> RUB</span><span class=".ad_impressions_label" style="display: none"><%= ad_impressions %> Impressions</span></span>
-
-                <div class="preview-image"><img src="http://localhost:8000/<%= image_filepath %>"" alt=""/></div>
-                <div class="caption">
-                  <h4><%= ad_creation_date %></h4>
-                  <div class="detail">
-                    <strong>Image Filepath</strong><br />
-                    <span class="image_filepath"><%= image_filepath %></span><br />
-                    <strong>Ad Cost</strong><br />
-                    <span class="ad_spend"><%= ad_spend %></span><br />
-                    <strong>Text</strong><br />
-                    <span class="ad_text"><%= ad_text %></span><br />
-                    <span class="ad_impressions"><%= ad_impressions %></span><br />
-                    <span class="ad_clicks"><%= ad_clicks %></span><br />
-                    <span class="ad_landing_page"><%= ad_landing_page %></span><br />
-                    <span class="ad_targeting_location"><%= ad_targeting_location %></span><br />
-                    <span class="interest_expansion"><%= interest_expansion %></span><br />
-                    <span class="age"><%= age %></span><br />
-                    <span class="placements"><%= placements %></span><br/>
-                    <span class="language"><%= language %></span><br />
-                    <span class="ad_creation_date"><%= ad_creation_date %></span><br />
-                    <span class="ad_end_date"><%= ad_end_date %></span><br />
-                    <span class="and_must_also_match"><%= and_must_also_match %></span><br />
-                    <span class="ad_id"><%= ad_id %></span><br />
-                    <span class="people_who_match"><%= people_who_match %></span><br />
-                    <span class="pdf_filepath"><%= pdf_filepath %></span>
+              <legend>Dates</legend>
+                <!-- <div class="btn-group" data-toggle="buttons"> -->
+                <fieldset id="year-criteria">
+                  <div class="checkbox-inline">
+                    <label class="btn btn-success">
+                      <input type="checkbox" autocomplete="off" value="2015"><span>2015</span>
+                    </label>
                   </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-success">
+                      <input type="checkbox" autocomplete="off" value="2016"><span>2016</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-success">
+                      <input type="checkbox" autocomplete="off" value="2017"><span>2017</span>
+                    </label>
+                  </div>
+                </fieldset>
+              <!-- </div> -->
+
+              <br /><br />
+
+                <!-- <div class="btn-group" data-toggle="buttons"> -->
+                <fieldset id="month-criteria">
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="01"><span>Jan</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="02"><span>Feb</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="03"><span>Mar</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="04"><span>Apr</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="05"><span>May</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="06"><span>Jun</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="07"><span>Jul</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="08"><span>Aug</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="09"><span>Sep</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="10"><span>Oct</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="11"><span>Nov</span>
+                    </label>
+                  </div>
+                  <div class="checkbox-inline">
+                    <label class="btn btn-primary">
+                      <input type="checkbox" autocomplete="off" value="12"><span>Dec</span>
+                    </label>
+                  </div>
+                </fieldset>
+              <!-- </div> -->
+
+<!--               <button type="button" class="btn btn-primary month-button", value=''>All</button>
+              <button type="button" class="btn btn-primary month-button", value='1'>Jan</button>
+              <button type="button" class="btn btn-primary month-button", value='2'>Feb</button>
+              <button type="button" class="btn btn-primary month-button", value='3'>Mar</button>
+              <button type="button" class="btn btn-primary month-button", value='4'>Apr</button>
+              <button type="button" class="btn btn-primary month-button", value='5'>May</button>
+              <button type="button" class="btn btn-primary month-button", value='6'>Jun</button>
+              <button type="button" class="btn btn-primary month-button", value='7'>Jul</button>
+              <button type="button" class="btn btn-primary month-button", value='8'>Aug</button>
+              <button type="button" class="btn btn-primary month-button", value='9'>Sep</button>
+              <button type="button" class="btn btn-primary month-button", value='10'>Oct</button>
+              <button type="button" class="btn btn-primary month-button", value='11'>Nov</button>
+              <button type="button" class="btn btn-primary month-button", value='12'>Dec</button> -->
+<!-- 
+              <div class="well">
+                <fieldset id="genre_criteria">
+
+                  <legend>Genre</legend>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="2015">
+                      <span>Crime</span>
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="2016">
+                      <span>Drama</span>
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="2017">
+                      <span>Thriller</span> 
+                    </label>
+                  </div>
+
+                </fieldset>
+              </div> -->
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- /.col-md-3 -->
+        <div class="col-md-12">
+          <div class="row">
+            <div class="content col-md-12">
+              <div id="pagination" class="russian-ads-pagination col-md-9"></div>
+              <div class="col-md-3 content">
+                Per Page: <span id="per_page" class="content"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="russian-ads row" id="russian-ads"> </div>
+        </div>
+        <!-- /.col-md-9 -->
+
+        <!-- /.container-fluid -->
+
+        <script id="russian-ad-template" type="text/html">
+          <div class="col-md-3 ru">
+            <div class="thumbnail">
+              <span class="label label-success click"><span class='.ad_clicks_label'><%= ad_clicks %> Clicks</span><span class='.ad_spend_label' style="display: none"><%= ad_spend %> RUB</span><span class=".ad_impressions_label" style="display: none"><%= ad_impressions %> Impressions</span></span>
+
+              <div class="preview-image"><img src="https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/<%= image_filepath %>"" alt=""/></div>
+              <div class="caption">
+                <h4><%= ad_creation_date %></h4>
+                <div class="detail">
+                  <strong>Image Filepath</strong><br />
+                  <span class="image_filepath"><%= image_filepath %></span><br />
+                  <strong>Ad Cost</strong><br />
+                  <span class="ad_spend"><%= ad_spend %></span><br />
+                  <strong>Text</strong><br />
+                  <span class="ad_text"><%= ad_text %></span><br />
+                  <span class="ad_impressions"><%= ad_impressions %></span><br />
+                  <span class="ad_clicks"><%= ad_clicks %></span><br />
+                  <span class="ad_landing_page"><%= ad_landing_page %></span><br />
+                  <span class="ad_targeting_location"><%= ad_targeting_location %></span><br />
+                  <span class="interest_expansion"><%= interest_expansion %></span><br />
+                  <span class="age"><%= age %></span><br />
+                  <span class="placements"><%= placements %></span><br/>
+                  <span class="language"><%= language %></span><br />
+                  <span class="ad_creation_date"><%= ad_creation_date %></span><br />
+                  <span class="ad_end_date"><%= ad_end_date %></span><br />
+                  <span class="and_must_also_match"><%= and_must_also_match %></span><br />
+                  <span class="ad_id"><%= ad_id %></span><br />
+                  <span class="people_who_match"><%= people_who_match %></span><br />
+                  <span class="pdf_filepath"><%= pdf_filepath %></span>
                 </div>
               </div>
             </div>
-          </script>
+          </div>
+        </script>
 
-          <script id="genre_template" type="text/html">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="<%= ad_clicks %>"> <%= ad_clicks %>
-              </label>
-            </div>
-          </script>
+        <script id="genre_template" type="text/html">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="<%= ad_clicks %>"> <%= ad_clicks %>
+            </label>
+          </div>
+        </script>
 
 
-        </body>
-        </html>
+      </body>
+      </html>

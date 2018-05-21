@@ -83,3 +83,4 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - resources/projects/2018-05-09-russian-ads/data
