@@ -23,6 +23,9 @@ select:focus, textarea:focus, input:focus{
   border-color: #CCC !important;
 }
 
+$("input:radio[id=option1]").prop('checked', true);
+$("input:radio[id=option2]").click();
+
 #primary-content{
 /*    padding: 0px;
     width: 100%;
@@ -108,8 +111,12 @@ select:focus, textarea:focus, input:focus{
   margin-bottom: 20px;
 }
 
-.sort-button {
+.btn {
   margin: 2px;
+}
+
+.year-button {
+  background-color: green;
 }
 
 .sidebar h4{
@@ -196,10 +203,6 @@ select:focus, textarea:focus, input:focus{
 .caption h4{
   color: #b22222;
   min-height: 25px;
-}
-
-.field-row{
-  display: block;
 }
 
 .russian-ad{
