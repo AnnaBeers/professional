@@ -18,13 +18,27 @@
 <body>
 
 
-  <div class="container-fluid">
+<div class="container-fluid title-container">
+  <div class="jumbotron">
+    <h1>The Russian Ad Explorer</h1> 
+    <p>Explore ads purchased by the Internet Research Agency (IRA) on Facebook and Instagram for American audiences. Learn more about the project here <a href="">here</a> and download the dataset that powers this explorer <a href="">here</a>.
+      <br /><br />
+    Because this website is full of ads, you may have to turn off AdBlock to prevent text and/or images from being removed.</p> 
+  </div>
+</div>
+
+<!--   <div class="container-fluid">
     <div class=col-sm-8>
       <h1 class="title">Russian Ad Explorer</h1>
     </div>
-    <div class="col-lg-2 col-sm-2 col-sm-6 col-xs-6 menu-tab">About</div>
-    <div class="col-lg-2 col-sm-2 col-sm-6 col-xs-6 menu-tab">Download Dataset</div>
-  </div>
+    <div class="col-lg-2 col-sm-6 col-xs-6 menu-tab">
+      <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">About</a></nav>
+</div>
+    <div class="col-lg-2 col-sm-6 col-xs-6 menu-tab"><nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">Download Dataset</a>
+</nav></div>
+  </div> -->
 
   <div class="container-fluid" id="primary-content">
 
@@ -54,15 +68,15 @@
 
     </div>
 
-    <div class="container-fluid" style="margin: 20px 0">
-      <legend>Search</legend>
-      <div class="searchbar cold-md-12">
+    <div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px; height: 85px">
+      <div class="searchbar col-md-12">
+        <legend>Search</legend>
         <label class="sr-only" for="searchbox">Search</label>
         <input type="text" class="form-control" id="searchbox" style="font-size: 24px; height: 36px" placeholder="Search Ad Text … (e.g. 'refugee', 'police', 'bernie', 'LGBT', 'gun')">
       </div>
     </div>
 
-    <div class="container-fluid">
+<!--     <div class="container-fluid">
       <div class="col-sm-4 filter-row">
         <fieldset id="click_criteria">
           <legend>Clicks</legend> <span id="click_range_label" class="slider-label">0 - 100,000 Clicks</span>
@@ -87,18 +101,18 @@
                 <input type="hidden" id="spend_filter" value="0-10000000">
               </fieldset>
             </div>
-          </div>
+          </div> -->
 
           <div class="container-fluid">
 
 <!--             <div class="col-sm-3 filter-row">
               <legend>Sort By..</legend>
-              <button type="button" class="btn btn-primary sort-button", value='ad_creation_date'>Date</button>
-              <button type="button" class="btn btn-primary sort-button", value='ad_clicks'>Clicks</button>
-              <button type="button" class="btn btn-primary sort-button", value='ad_impressions'>Impressions</button>
-              <button type="button" class="btn btn-primary sort-button", value='ad_spend'>Cost</button>
-              <button type="button" class="btn btn-primary sort-button", value='efficiency_clicks'>Efficiency (Clicks)</button>
-              <button type="button" class="btn btn-primary sort-button", value='efficiency_impressions'>Efficiency (Impressions)</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='ad_creation_date'>Date</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='ad_clicks'>Clicks</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='ad_impressions'>Impressions</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='ad_spend'>Cost</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='efficiency_clicks'>Efficiency (Clicks)</button>
+              <button type="button" class="btn btn-primary btn-date sort-button", value='efficiency_impressions'>Efficiency (Impressions)</button>
             </div> -->
 
             <div class="col-sm-3 filter-row">
@@ -127,107 +141,107 @@
 
             <div class="col-sm-3 filter-row">
 
-              <legend>Dates</legend>
+              <legend>Ad Creation Date</legend>
                 <!-- <div class="btn-group" data-toggle="buttons"> -->
                 <fieldset id="year-criteria">
                   <div class="checkbox-inline">
-                    <label class="btn btn-success">
+                    <label class="btn btn-success btn-date">
                       <input type="checkbox" autocomplete="off" value="2015"><span>2015</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-success">
+                    <label class="btn btn-success btn-date">
                       <input type="checkbox" autocomplete="off" value="2016"><span>2016</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-success">
+                    <label class="btn btn-success btn-date">
                       <input type="checkbox" autocomplete="off" value="2017"><span>2017</span>
                     </label>
                   </div>
                 </fieldset>
               <!-- </div> -->
 
-              <br /><br />
+              <br />
 
                 <!-- <div class="btn-group" data-toggle="buttons"> -->
                 <fieldset id="month-criteria">
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="01"><span>Jan</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="02"><span>Feb</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="03"><span>Mar</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="04"><span>Apr</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="05"><span>May</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="06"><span>Jun</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="07"><span>Jul</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="08"><span>Aug</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="09"><span>Sep</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="10"><span>Oct</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="11"><span>Nov</span>
                     </label>
                   </div>
                   <div class="checkbox-inline">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary btn-date">
                       <input type="checkbox" autocomplete="off" value="12"><span>Dec</span>
                     </label>
                   </div>
                 </fieldset>
               <!-- </div> -->
 
-<!--               <button type="button" class="btn btn-primary month-button", value=''>All</button>
-              <button type="button" class="btn btn-primary month-button", value='1'>Jan</button>
-              <button type="button" class="btn btn-primary month-button", value='2'>Feb</button>
-              <button type="button" class="btn btn-primary month-button", value='3'>Mar</button>
-              <button type="button" class="btn btn-primary month-button", value='4'>Apr</button>
-              <button type="button" class="btn btn-primary month-button", value='5'>May</button>
-              <button type="button" class="btn btn-primary month-button", value='6'>Jun</button>
-              <button type="button" class="btn btn-primary month-button", value='7'>Jul</button>
-              <button type="button" class="btn btn-primary month-button", value='8'>Aug</button>
-              <button type="button" class="btn btn-primary month-button", value='9'>Sep</button>
-              <button type="button" class="btn btn-primary month-button", value='10'>Oct</button>
-              <button type="button" class="btn btn-primary month-button", value='11'>Nov</button>
-              <button type="button" class="btn btn-primary month-button", value='12'>Dec</button> -->
+<!--               <button type="button" class="btn btn-primary btn-date month-button", value=''>All</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='1'>Jan</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='2'>Feb</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='3'>Mar</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='4'>Apr</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='5'>May</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='6'>Jun</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='7'>Jul</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='8'>Aug</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='9'>Sep</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='10'>Oct</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='11'>Nov</button>
+              <button type="button" class="btn btn-primary btn-date month-button", value='12'>Dec</button> -->
 <!-- 
               <div class="well">
                 <fieldset id="genre_criteria">

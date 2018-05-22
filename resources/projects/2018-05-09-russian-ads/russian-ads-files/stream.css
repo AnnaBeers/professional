@@ -307,8 +307,31 @@ $("input:radio[id=option2]").click();
   border: 1px black solid;
 }
 
+.jumbotron {
+  padding-top: 10px;
+}
+
+.title-container {
+  width: 100%;
+  padding: 0;
+  max-width: none;
+}
+
+.btn-date {
+  min-width: 60px
+}
+
+.checkbox-inline {
+  margin: 0 !important;
+  padding: 0;
+}
+
+.checkbox-inline input[type=checkbox] {
+  display: none;
+}
+
 .searchbar {
-  margin: 0 30px 30px 30px;
+  /*margin: 0 30px 30px 30px;*/
   font-size: 24px;
   height: 36px;
 }
