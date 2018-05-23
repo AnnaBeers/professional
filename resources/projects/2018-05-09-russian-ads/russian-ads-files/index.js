@@ -263,7 +263,6 @@ $(document).ready(function(){
 
   sortOptions = buildSortOptions('ad_clicks');
   FJS.filter();
-  e.preventDefault();
 
   window.FJS = FJS;
 
