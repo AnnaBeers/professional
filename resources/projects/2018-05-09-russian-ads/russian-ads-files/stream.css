@@ -36,11 +36,16 @@ $("input:radio[id=option2]").click();
     line-height: 26px;
     text-align: left;
     margin-bottom: 30px;
+    max-height: 700px;
 
 /*    @include smallview{
         margin: 10px auto;
         float: none;
     }*/
+}
+
+.btn {
+  width: 100%;
 }
 
 .menu-tab{
@@ -49,6 +54,12 @@ $("input:radio[id=option2]").click();
   padding: 20px 0;
   margin: 20px 0;
   text-align: center;
+}
+
+#download-share{
+   position: absolute;                  /* added */
+   bottom: 0;                           /* added */
+   left: 0;                           /* added */
 }
 
 #primary-details #primary-image{
@@ -168,6 +179,7 @@ $("input:radio[id=option2]").click();
 }
 
 .thumbnail{
+  text-decoration: none !important;
   /* background-color: #EEE; */
   border-radius: 0;
   height: 600px;
@@ -307,8 +319,13 @@ $("input:radio[id=option2]").click();
   border: 1px black solid;
 }
 
+legend {
+  font-size: 22px;
+}
+
 .jumbotron {
   padding-top: 10px;
+  border-radius: 0px !important;
 }
 
 .title-container {
@@ -327,9 +344,15 @@ $("input:radio[id=option2]").click();
 }
 
 .checkbox-inline input[type=checkbox] {
-  display: none;
+  /*display: none;*/
+  top: 13px;
+  left: 5px;
+  margin: 0;
 }
 
+#next-buttons {
+  margin-bottom: 20px;
+}
 .searchbar {
   /*margin: 0 30px 30px 30px;*/
   font-size: 24px;

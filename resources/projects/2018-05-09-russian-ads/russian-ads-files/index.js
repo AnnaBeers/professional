@@ -3,7 +3,7 @@
 
 // Static Variables
 
-var ad_values = ['ad_id', 'ad_text','ad_landing_page', 'ad_targeting_location', 'age', 'language', 'placements', 'people_who_match', 'and_must_also_match', 'ad_impressions', 'ad_clicks', 'ad_spend', 'ad_creation_date', 'ad_end_date', 'interest_expansion'];
+var ad_values = ['ad_id', 'ad_text','ad_landing_page', 'ad_targeting_location', 'age', 'language', 'placements', 'people_who_match', 'and_must_also_match', 'ad_impressions', 'ad_clicks', 'ad_spend', 'ad_creation_date', 'ad_end_date', 'interest_expansion', 'date_order_index'];
 var sort_values = ['ad_creation_date', 'ad_clicks', 'ad_impressions', 'ad_spend', 'efficiency_clicks', 'efficiency_impressions']
 var ad_values_length = ad_values.length;
 
@@ -28,6 +28,11 @@ function updatePrimaryContent() {
 }
 }
 
+function updateCardTag(name){
+   $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + $(this).children(".caption").children('.detail').children('.image_filepath').text());
+}
+
+
 function buildSortOptions(name){
 
   if(name == 'ad_clicks'){
@@ -43,7 +48,7 @@ function buildSortOptions(name){
   }
 
   if(name == 'ad_creation_date'){
-    return {'ad_creation_date': 'desc'}  
+    return {'date_order_index': 'asc'}  
   }
 
   if(name == 'efficiency_impressions'){
@@ -94,26 +99,71 @@ function initSliders(){
   });
 
 }
-  // $('#year_criteria :checkbox').prop('checked', true);
+
+// $('#year_criteria :checkbox').prop('checked', true);
 
 // Functions after DOM loads (I think?)
 
 window.onload = function(){
 
-  var page_id = parseFloat(getParameterByName('ad_id'));
-
-  var needle = russian_ads.filter(
-    function(data){ return data.ad_id === page_id }
-    );
-
-  $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath)
-
-  for(i = 0; i < ad_values_length; i++) {
-    $("#primary-details").children().children('#' + ad_values[i]).text(needle[0][ad_values[i]]);
-  }
 }
 
 $(document).ready(function(){
+
+  function grabNeedle(key, value){
+    needle = russian_ads.filter(
+      function(data){ return data[key] === value }
+      );
+    return needle
+  }
+
+  function getContentByIndex(page_id, key){
+
+    needle = grabNeedle(key, page_id)
+
+    $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath)
+
+    for(i = 0; i < ad_values_length; i++) {
+      $("#primary-details").children().children('#' + ad_values[i]).text(needle[0][ad_values[i]]);
+    }
+
+    $("#download").children().attr("href", ('https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].pdf_filepath));
+
+    $("#twitter-button").attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURI('"' + needle[0]['ad_text'].substring(0, 100) + '..." An ad bought by the Russian Internet Research Assocation on Facebook and Instagram.') + '&url=' + encodeURI(window.location.href));
+
+    $("#facebook-button").attr('href', 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURI(window.location.href) + '&title=' + encodeURI('The Russian Ad Explorer'));
+ 
+    $('meta[property="og:image"]').remove();
+    $('meta[property="og:description"]').remove();
+    $('meta[property="og:url"]').remove();
+    $("head").append('<meta property="og:image" content="' + 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath + '">');
+    $("head").append('<meta property="og:description" content="' + needle[0]['ad_text'].substring(0, 100) + '...">');
+    $("head").append('<meta property="og:url" content="' + window.location.href + '">');
+
+  }
+
+  var page_id = parseFloat(getParameterByName('ad_id'));
+  if (typeof page_id === 'undefined' || ! page_id) {
+    page_id = 2647
+    history.replaceState('', 'Russian Ad Explorer', '?ad_id=2647')
+  }
+
+  getContentByIndex(page_id, 'ad_id')
+
+  $("#next-button").on('click', function(e){
+    ad_id = parseInt($('#date_order_index').text())
+    getContentByIndex(ad_id + 1, 'date_order_index')
+  });
+
+  $("#previous-button").on('click', function(e){
+    ad_id = parseInt($('#date_order_index').text())
+    getContentByIndex(ad_id - 1, 'date_order_index')
+  });
+
+  $("#random-button").on('click', function(e){
+    ad_id = Math.floor(Math.random() * russian_ads.length);
+    getContentByIndex(ad_id, 'date_order_index')
+  });
 
   initSliders();
 
@@ -166,13 +216,13 @@ $(document).ready(function(){
   })
 
   FJS.addCallback('afterAddRecords', function(){
-    var percent = (this.recordsCount - 250)*100/250;
+    // var percent = (this.recordsCount - 250)*100/250;
 
-    $('#stream_progress').text(percent + '%').attr('style', 'width: '+ percent +'%;');
+    // $('#stream_progress').text(percent + '%').attr('style', 'width: '+ percent +'%;');
 
-    if (percent == 100){
-      $('#stream_progress').parent().fadeOut(1000);
-    }
+    // if (percent == 100){
+    //   $('#stream_progress').parent().fadeOut(1000);
+    // }
 
   });
 
@@ -194,9 +244,9 @@ $(document).ready(function(){
   });
 
   // FJS.addCriteria({field: 'year', ele: '#year_filter', type: 'range', all: 'all'});
-  FJS.addCriteria({field: 'ad_clicks', ele: '#click_filter', type: 'range'});
-  FJS.addCriteria({field: 'ad_impressions', ele: '#impressions_filter', type: 'range'});
-  FJS.addCriteria({field: 'ad_spend', ele: '#spend_filter', type: 'range'});
+  // FJS.addCriteria({field: 'ad_clicks', ele: '#click_filter', type: 'range'});
+  // FJS.addCriteria({field: 'ad_impressions', ele: '#impressions_filter', type: 'range'});
+  // FJS.addCriteria({field: 'ad_spend', ele: '#spend_filter', type: 'range'});
   FJS.addCriteria({field: 'year', ele: '#year-criteria input:checkbox'});
   FJS.addCriteria({field: 'month', ele: '#month-criteria input:checkbox'});
 
@@ -211,11 +261,14 @@ $(document).ready(function(){
 
   FJS.filter();
 
+  sortOptions = buildSortOptions('ad_clicks');
+  FJS.filter();
+  e.preventDefault();
+
   window.FJS = FJS;
 
-  $('#sort-button-click').click();
-  $('#all_month').on('click', function(){
-    $('#genre_criteria :checkbox').prop('checked', $(this).is(':checked'));
-  });
+  // $('#all_month').on('click', function(){
+  //   $('#genre_criteria :checkbox').prop('checked', $(this).is(':checked'));
+  // });
 
   });
