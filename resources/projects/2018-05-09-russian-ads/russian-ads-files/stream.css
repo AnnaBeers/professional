@@ -183,6 +183,7 @@ $("input:radio[id=option2]").click();
   /* background-color: #EEE; */
   border-radius: 0;
   height: 600px;
+  cursor: pointer;
 }
 
 .label{

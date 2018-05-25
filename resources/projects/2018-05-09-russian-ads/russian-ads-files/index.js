@@ -3,8 +3,9 @@
 
 // Static Variables
 
-var ad_values = ['ad_id', 'ad_text','ad_landing_page', 'ad_targeting_location', 'age', 'language', 'placements', 'people_who_match', 'and_must_also_match', 'ad_impressions', 'ad_clicks', 'ad_spend', 'ad_creation_date', 'ad_end_date', 'interest_expansion', 'date_order_index'];
+var ad_values = ['ad_id', 'ad_copy','ad_landing_page', 'ad_targeting_location', 'age', 'language', 'placements', 'people_who_match', 'and_must_also_match', 'ad_impressions', 'ad_clicks', 'ad_spend', 'ad_creation_date', 'ad_end_date', 'interest_expansion', 'date_order_index'];
 var sort_values = ['ad_creation_date', 'ad_clicks', 'ad_impressions', 'ad_spend', 'efficiency_clicks', 'efficiency_impressions']
+var chosen_sort = 'ad_clicks'
 var ad_values_length = ad_values.length;
 
 
@@ -124,12 +125,17 @@ $(document).ready(function(){
     $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath)
 
     for(i = 0; i < ad_values_length; i++) {
-      $("#primary-details").children().children('#' + ad_values[i]).text(needle[0][ad_values[i]]);
+      data_point = needle[0][ad_values[i]]
+      if (data_point === null) {
+        data_point = '[Unavailable]'
+      }
+      console.log(data_point)
+      $("#primary-details").children().children('#' + ad_values[i]).text(data_point);
     }
 
     $("#download").children().attr("href", ('https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].pdf_filepath));
 
-    $("#twitter-button").attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURI('"' + needle[0]['ad_text'].substring(0, 100) + '..." An ad bought by the Russian Internet Research Assocation on Facebook and Instagram.') + '&url=' + encodeURI(window.location.href));
+    $("#twitter-button").attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURI('"' + needle[0]['ad_copy'].substring(0, 100) + '..." An ad bought by the Russian Internet Research Assocation on Facebook and Instagram.') + '&url=' + encodeURI(window.location.href));
 
     $("#facebook-button").attr('href', 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURI(window.location.href) + '&title=' + encodeURI('The Russian Ad Explorer'));
  
@@ -137,7 +143,7 @@ $(document).ready(function(){
     $('meta[property="og:description"]').remove();
     $('meta[property="og:url"]').remove();
     $("head").append('<meta property="og:image" content="' + 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath + '">');
-    $("head").append('<meta property="og:description" content="' + needle[0]['ad_text'].substring(0, 100) + '...">');
+    $("head").append('<meta property="og:description" content="' + needle[0]['ad_copy'].substring(0, 100) + '...">');
     $("head").append('<meta property="og:url" content="' + window.location.href + '">');
 
   }
@@ -191,7 +197,7 @@ $(document).ready(function(){
   var FJS = FilterJS(russian_ads, '#russian-ads', {
     template: '#russian-ad-template',
     // search: { ele: '#searchbox' },
-    search: {ele: '#searchbox', fields: ['ad_text']}, // With specific fields
+    search: {ele: '#searchbox', fields: ['ad_copy']}, // With specific fields
     callbacks: {
       afterFilter: afterFilter
     },
@@ -229,10 +235,31 @@ $(document).ready(function(){
   var sortOptions = {};
 
   // for(i = 0; i < sort_values.length; i++) {
-    $(".sort-button").on('change', function(e){
-      sortOptions = buildSortOptions($(this).val());
+    // $(".sort-button").on('change', function(e){
+    //   sortOptions = buildSortOptions($(this).val());
+    //   FJS.filter();
+    //   e.preventDefault();
+    // });
+
+    $('.sort-btn').click(function(e) {
+      data_point = $(this).children().val();
+      sortOptions = buildSortOptions(data_point);
+      $('.sort-btn.active').removeClass("active");
+      $(this).addClass("active");
+
       FJS.filter();
-      e.preventDefault();
+
+      $('.thumbnail-tag').addClass("hidden");
+
+      if (data_point === 'ad_creation_date') {
+        $('.ad_clicks_label').removeClass("hidden");
+      }
+      else {
+        $('.' + data_point + '_label').removeClass("hidden");
+      }
+
+      chosen_sort = data_point
+
     });
 // }
 
@@ -262,6 +289,7 @@ $(document).ready(function(){
   FJS.filter();
 
   sortOptions = buildSortOptions('ad_clicks');
+  $(".click-btn").addClass("active");
   FJS.filter();
 
   window.FJS = FJS;

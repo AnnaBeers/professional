@@ -53,7 +53,7 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
       <h1>The Russian Ad Explorer</h1> 
       <p>Explore ads purchased by the Internet Research Agency (IRA) on Facebook and Instagram for American audiences. Learn more about the project and download the dataset that powers this explorer <a href="{{ site.baseurl }}/resources/projects/2018-05-09-russian-ads/about">here</a>.
         <br /><br />
-      Because this website is full of ads, you may have to turn off AdBlock to prevent text and/or images from being removed. Text and images are automatically scraped from PDF documents, and may contain errors or missing links. Ads may contain redactions.</p> 
+      Note: text and images are automatically scraped from PDF documents, and may contain errors or missing images. Ads may be partially redacted or blacked out.</p> 
     </div>
   </div>
 
@@ -95,7 +95,7 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
     <div class="row" style="display: inline">
       <strong>Ad Creation Date:</strong> <span id="ad_creation_date"></span><br />
       <strong>Ad End Date:</strong> <span id="ad_end_date"></span><br />
-      <strong>Ad Text:</strong> <span id="ad_text"></span><br />
+      <strong>Ad Text:</strong> <span id="ad_copy"></span><br />
       <strong>Ad Impressions:</strong> <span id="ad_impressions"></span><br />
       <strong>Ad Clicks:</strong> <span id="ad_clicks"></span><br />
       <strong>Ad Cost:</strong> <span id="ad_spend"></span><br />
@@ -111,13 +111,13 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
     </div>
 
     <div class="row">
-      <div class='col-sm-4'>
+      <div class='col-md-4'>
         <span id="download"><a href="" class="btn btn-lg btn-default">Download <span class="glyphicon glyphicon-circle-arrow-down"></span></a></span>
       </div>
-      <div class='col-sm-4'>
+      <div class='col-md-4'>
         <a id="twitter-button" href="" class="btn btn-lg btn-default">Twitter <i class="fa fa-twitter"></i></a>
       </div>
-      <div class='col-sm-4'>
+      <div class='col-md-4'>
         <a id='facebook-button' href="" class="btn btn-lg btn-default">Facebook <i class="fa fa-facebook"></i></a>
       </div>
     </div>
@@ -176,22 +176,22 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
             <div class="col-sm-3 filter-row">
               <legend>Sort By..</legend>
               <div id="radios" class="btn-group" data-toggle="buttons" style='display: inline-block;'>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn">
                   <input type="radio" class="sort-button" value="ad_creation_date"/> Creation Date
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn click-btn">
                   <input type="radio" class="sort-button" value="ad_clicks" /> Clicks
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn">
                   <input type="radio" class="sort-button" value="ad_impressions" /> Impressions
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn">
                   <input type="radio" class="sort-button" value="ad_spend" /> Cost (RUB)
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn">
                   <input type="radio" class="sort-button" value="efficiency_clicks" /> Efficiency (Clicks)
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default sort-btn" value="efficiency_impressions">
                   <input type="radio" class="sort-button" value="efficiency_impressions" /> Efficiency (Impressions)
                 </label>
               </div>
@@ -352,7 +352,7 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
         <script id="russian-ad-template" type="text/html">
           <div class="col-sm-3 ru">
             <div class="thumbnail">
-              <span class="label label-success click"><span class='.ad_clicks_label'><%= ad_clicks %> Clicks</span><span class='.ad_spend_label' style="display: none"><%= ad_spend %> RUB</span><span class=".ad_impressions_label" style="display: none"><%= ad_impressions %> Impressions</span></span>
+              <span class="label label-success click"><span class='ad_clicks_label thumbnail-tag'><%= ad_clicks %> Clicks</span><span class='ad_spend_label thumbnail-tag hidden'><%= ad_spend %> RUB</span><span class=".ad_impressions_label thumbnail-tag hidden"><%= ad_impressions %> Impressions</span><span class="efficiency_clicks_label thumbnail-tag hidden"><%= efficiency_clicks %> Clicks / $</span><span class="efficiency_impressions_label thumbnail-tag hidden"><%= efficiency_impressions %> Impressions / $</span><span class="ad_impressions_label thumbnail-tag hidden"><%= ad_impressions %> Impressions</span></span>
 
               <div class="preview-image"><img src="https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/<%= image_filepath %>"" alt=""/></div>
               <div class="caption">
@@ -362,7 +362,7 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
                   <strong>Ad Cost</strong><br />
                   <span class="ad_spend"><%= ad_spend %></span><br />
                   <strong>Text</strong><br />
-                  <span class="ad_text"><%= ad_text %></span><br />
+                  <span class="ad_copy"><%= ad_copy %></span><br />
                   <strong>Impressions</strong>
                   <span class="ad_impressions"><%= ad_impressions %></span><br />
                   <strong>Clicks</strong>
@@ -373,10 +373,15 @@ blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Researc
                   <span class="ad_targeting_location"><%= ad_targeting_location %></span><br />
                   <strong>Interests</strong>
                   <span class="interest_expansion"><%= interest_expansion %></span><br />
+                  <atrong>Age</atrong>
                   <span class="age"><%= age %></span><br />
+                  <strong>Ad Placements</strong>
                   <span class="placements"><%= placements %></span><br/>
+                  <strong>Ad Language</strong>
                   <span class="language"><%= language %></span><br />
+                  <strong>Ad Creation Date</strong>
                   <span class="ad_creation_date"><%= ad_creation_date %></span><br />
+                  <strong>Ad End Date</strong>
                   <span class="ad_end_date"><%= ad_end_date %></span><br />
                   <span class="and_must_also_match"><%= and_must_also_match %></span><br />
                   <span class="ad_id"><%= ad_id %></span><br />
