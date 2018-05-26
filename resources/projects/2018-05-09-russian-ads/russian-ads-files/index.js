@@ -1,152 +1,11 @@
+---
+---
 
 // I'm sorry this Javascript looks so confusing and out of order -- amateurs need to practice too.
 
-// Static Variables
-
-var ad_values = ['ad_id', 'ad_copy','ad_landing_page', 'ad_targeting_location', 'age', 'language', 'placements', 'people_who_match', 'and_must_also_match', 'ad_impressions', 'ad_clicks', 'ad_spend', 'ad_creation_date', 'ad_end_date', 'interest_expansion', 'date_order_index'];
-var sort_values = ['ad_creation_date', 'ad_clicks', 'ad_impressions', 'ad_spend', 'efficiency_clicks', 'efficiency_impressions']
-var chosen_sort = 'ad_clicks'
-var ad_values_length = ad_values.length;
-
-
-// Static Functions
-
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-  results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-function updatePrimaryContent() {
- $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + $(this).children(".caption").children('.detail').children('.image_filepath').text());
-
- for(i = 0; i < ad_values_length; i++) {
-  $("#primary_details").children().children('#' + ad_values[i]).text($(this).children(".caption").children('.detail').children('.' + ad_values[i]).text());
-}
-}
-
-function updateCardTag(name){
-   $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + $(this).children(".caption").children('.detail').children('.image_filepath').text());
-}
-
-
-function buildSortOptions(name){
-
-  if(name == 'ad_clicks'){
-    return {'ad_clicks': 'desc'}  
-  }
-
-  if(name == 'ad_spend'){
-    return {'ad_spend': 'desc'}  
-  }
-
-  if(name == 'ad_impressions'){
-    return {'ad_impressions': 'desc'}  
-  }
-
-  if(name == 'ad_creation_date'){
-    return {'date_order_index': 'asc'}  
-  }
-
-  if(name == 'efficiency_impressions'){
-    return {'efficiency_impressions': 'desc'}  
-  }
-
-  if(name == 'efficiency_clicks'){
-    return {'efficiency_clicks': 'desc'}  
-  }
-}
-
-
-function initSliders(){
-  $("#click_slider").slider({
-    min: 0,
-    max: 100000,
-    values:[0, 100000],
-    step: 1,
-    range:true,
-    slide: function( event, ui ) {
-      $("#click_range_label" ).html(ui.values[ 0 ] + ' - ' + ui.values[ 1 ] + ' clicks');
-      $('#click_filter').val(ui.values[0] + '-' + ui.values[1]).trigger('change');
-    }
-  });
-
-  $("#impressions_slider").slider({
-    min: 0,
-    max: 1000000,
-    values:[0, 1000000],
-    step: 1,
-    range: true,
-    slide: function( event, ui ) {
-      $("#impressions_range_label" ).html(ui.values[ 0 ] + ' - ' + ui.values[ 1 ] + ' impressions');
-      $('#impressions_filter').val(ui.values[0] + '-' + ui.values[1]).trigger('change');
-    }
-  });
-
-  $("#spend_slider").slider({
-    min: 0,
-    max: 50000,
-    values:[0, 50000],
-    step: 1,
-    range: true,
-    slide: function( event, ui ) {
-      $("#spend_range_label" ).html(ui.values[ 0 ] + ' - ' + ui.values[ 1 ] + ' RUB');
-      $('#spend_filter').val(ui.values[0] + '-' + ui.values[1]).trigger('change');
-    }
-  });
-
-}
-
 // $('#year_criteria :checkbox').prop('checked', true);
 
-// Functions after DOM loads (I think?)
-
-window.onload = function(){
-
-}
-
 $(document).ready(function(){
-
-  function grabNeedle(key, value){
-    needle = russian_ads.filter(
-      function(data){ return data[key] === value }
-      );
-    return needle
-  }
-
-  function getContentByIndex(page_id, key){
-
-    needle = grabNeedle(key, page_id)
-
-    $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath)
-
-    for(i = 0; i < ad_values_length; i++) {
-      data_point = needle[0][ad_values[i]]
-      if (data_point === null) {
-        data_point = '[Unavailable]'
-      }
-      console.log(data_point)
-      $("#primary-details").children().children('#' + ad_values[i]).text(data_point);
-    }
-
-    $("#download").children().attr("href", ('https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].pdf_filepath));
-
-    $("#twitter-button").attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURI('"' + needle[0]['ad_copy'].substring(0, 100) + '..." An ad bought by the Russian Internet Research Assocation on Facebook and Instagram.') + '&url=' + encodeURI(window.location.href));
-
-    $("#facebook-button").attr('href', 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURI(window.location.href) + '&title=' + encodeURI('The Russian Ad Explorer'));
- 
-    $('meta[property="og:image"]').remove();
-    $('meta[property="og:description"]').remove();
-    $('meta[property="og:url"]').remove();
-    $("head").append('<meta property="og:image" content="' + 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + needle[0].image_filepath + '">');
-    $("head").append('<meta property="og:description" content="' + needle[0]['ad_copy'].substring(0, 100) + '...">');
-    $("head").append('<meta property="og:url" content="' + window.location.href + '">');
-
-  }
 
   var page_id = parseFloat(getParameterByName('ad_id'));
   if (typeof page_id === 'undefined' || ! page_id) {
@@ -216,9 +75,7 @@ $(document).ready(function(){
   });
 
   FJS.addCallback('beforeRender', function(){
-    $(".thumbnail").click(function() {
-     $("#primary-image").children('img').attr('src', 'https://github.com/AndrewBeers/anderff-site/raw/master/resources/projects/2018-05-09-russian-ads/data/' + $(this).children(".caption").children('.detail').children('.image_filepath').text());
-   })
+
   })
 
   FJS.addCallback('afterAddRecords', function(){
