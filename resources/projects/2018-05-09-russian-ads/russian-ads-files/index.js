@@ -9,11 +9,11 @@ $(document).ready(function(){
 
   var page_id = parseFloat(getParameterByName('ad_id'));
   if (typeof page_id === 'undefined' || ! page_id) {
-    page_id = 2647
+    page_id = 500
     history.replaceState('', 'Russian Ad Explorer', '?ad_id=2647')
   }
 
-  getContentByIndex(page_id, 'ad_id')
+  getContentByIndex(page_id, 'date_order_index')
 
   $("#next-button").on('click', function(e){
     ad_id = parseInt($('#date_order_index').text())
@@ -133,7 +133,9 @@ $(document).ready(function(){
   // FJS.addCriteria({field: 'ad_spend', ele: '#spend_filter', type: 'range'});
   FJS.addCriteria({field: 'year', ele: '#year-criteria input:checkbox'});
   FJS.addCriteria({field: 'month', ele: '#month-criteria input:checkbox'});
-
+  FJS.addCriteria({field: 'placement_categories', ele: '#placement-criteria input:checkbox'});
+  FJS.addCriteria({field: 'language_categories', ele: '#language-criteria input:checkbox'});
+  FJS.addCriteria({field: 'interests_categories', ele: '#interest-criteria input:checkbox'});
 
   /*
    * Add multiple criterial.
@@ -154,5 +156,17 @@ $(document).ready(function(){
   // $('#all_month').on('click', function(){
   //   $('#genre_criteria :checkbox').prop('checked', $(this).is(':checked'));
   // });
+
+  // Imagine being this stupid.
+  $(".checkbox-inline").children().data('count', 0)
+  $(".checkbox-inline").children().on('click', function(e) {
+    $(this).data('count', ($(this).data('count') + 1) % 4)
+    if ($(this).data('count') == 1) {
+      $(this).addClass('active');
+    }
+    if ($(this).data('count') == 3) {
+      $(this).removeClass('active');
+    }
+  });
 
   });

@@ -23,8 +23,9 @@ select:focus, textarea:focus, input:focus{
   border-color: #CCC !important;
 }
 
-$("input:radio[id=option1]").prop('checked', true);
-$("input:radio[id=option2]").click();
+input:checkbox {
+  display: none !important;
+}
 
 #primary-content{
 /*    padding: 0px;
@@ -36,7 +37,7 @@ $("input:radio[id=option2]").click();
     line-height: 26px;
     text-align: left;
     margin-bottom: 30px;
-    max-height: 700px;
+    /*max-height: 700px;*/
 
 /*    @include smallview{
         margin: 10px auto;
@@ -280,6 +281,10 @@ $("input:radio[id=option2]").click();
   opacity: 0;
 }*/
 
+.active {
+  
+}
+
 .preview_image img {
   height: 300px;
   margin: auto;
@@ -345,7 +350,7 @@ legend {
 }
 
 .checkbox-inline input[type=checkbox] {
-  /*display: none;*/
+  display: none;
   top: 13px;
   left: 5px;
   margin: 0;
