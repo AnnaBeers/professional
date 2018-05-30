@@ -2,3 +2,4 @@
 /resources/projects/2018-05-09-russian-ads/data/** filter=lfs diff=lfs merge=lfs -text
 resources/projects/2018-05-09-russian-ads/russian-ads-files/ads_database.js filter=lfs diff=lfs merge=lfs -text
 resources/projects/2018-05-09-russian-ads/russian-ads-files/ads_database.json filter=lfs diff=lfs merge=lfs -text
+resources/projects/2018-05-09-russian-ads/russian-ads-files/ra_database.js filter=lfs diff=lfs merge=lfs -text
