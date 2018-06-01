@@ -92,6 +92,10 @@ input:checkbox {
   margin:0 auto;
 }
 
+.container-fluid {
+  max-width: 1000px
+}
+
 .sidebar{
   top: 0;
   left: 0;
@@ -176,7 +180,6 @@ input:checkbox {
 }
 
 .content{
-  margin-top: 15px;
 }
 
 .thumbnail{
@@ -336,9 +339,7 @@ legend {
 
 .title-container {
   width: 100%;
-  padding: 0;
-  max-width: none;
-}
+  padding: 0;}
 
 .btn-date {
   min-width: 60px

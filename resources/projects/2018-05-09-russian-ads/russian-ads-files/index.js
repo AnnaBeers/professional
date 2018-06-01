@@ -61,10 +61,10 @@ $(document).ready(function(){
       afterFilter: afterFilter
     },
     pagination: {
-      container: '#pagination',
+      container: '#per_page',
       visiblePages: 5,
       perPage: {
-        values: [12, 15, 18],
+        values: [9],
         container: '#per_page'
       },
     }
