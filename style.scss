@@ -270,7 +270,7 @@ body {
 	margin: 0px;
 	line-height: 0px;
 	text-align: center;
-	width: 45%;
+	width: 46.7%; /* I'M SORRY! */
 	height: 150px;
 	display: inline-block;
 	position: relative;
@@ -378,14 +378,25 @@ body {
 }
 
 .recentblock li {
-	font-size: 18px;	
-	margin-bottom: 8px;
-	line-height: 22px;
+	font-size: 22px;	
+	line-height: 38px;
+}
+
+.recent-category {	
+    display: inline;
+    color: $black;
+    background-color: $white;
+    padding: 6px;
+    min-width: 50px;
 }
 
 .recentblock ul {
 	margin: 0;	
 }
+
+/*.recentblock .projectblock {*/
+	/*margin*/
+/*}*/
 
 .recentblock a {
 	color: inherit	
@@ -515,24 +526,25 @@ body {
 // Projects Directory
 
 .projectblock {
+	line-height: 18px;
 	border: 3px $white solid;
 	padding: 0;
-	height: 150px;
-	width: 85%;
-	margin: 30px auto 0px auto;
+	height: 160px;
+	width: 513px; /* This is also rough */
+	margin: 30px 0 0 0;
 	color: $black;
 	font-family: $helvetica;
 	font-size: 18px;
 	position: relative;
 	background-color: $white;
 
-	@include smallview {
+/*	@include smallview {
 		height: 200px;
 		width: 98%;
 		margin: 30px 0% 30px 0%;
-	}
+	}*/
 
-	@include mobile {
+	@include smallview {
 		height: 275px;
 		width: 98%;
 		margin: 30px 0% 30px 0%;
@@ -553,7 +565,7 @@ body {
 	padding: 0px;
 	float: left;
 
-	@include mobile {
+	@include smallview {
 		border-right: none;
 		width: 100%;
 		height: 100px;
@@ -565,7 +577,7 @@ body {
 .projecticon img {
 	height: 100%;
 
-	@include mobile {
+	@include smallview {
 		height: auto;
 		width: 400px;
 	}
@@ -578,15 +590,15 @@ body {
 	float: left;
 	margin: 14px 22px;
 
-	@include smallview {
+/*	@include smallview {
 		display: inline-block;
 		width: 50%;
 		height: 100%;
 		float: left;
 		margin: 14px 22px;
-	}
+	}*/
 
-	@include mobile {
+	@include smallview {
 		display: inline-block;
 		width: 90%;
 		height: 50%;

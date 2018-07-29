@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+	<title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
 
 	{% include meta.html %}
    	<!--[if lt IE 9]>
@@ -19,7 +19,7 @@
 		<div id="contentwrap">
 
 <div id="headerwrap">
-  <a href=".." >
+  <a href="{{ site.baseurl }}/" >
   {% if page.header-title %}<div class="sub_titleblock">andrew beers<br />{{ page.header-title }}{% else %}<div class="titleblock">andrew beers{% endif %}</div></a>
             {% include header.html %}
 </div>
