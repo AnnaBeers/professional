@@ -9,9 +9,10 @@ blurb: "Down the rabbit hole of DCE-MRI, a 3D+Time MRI imaging modality used to 
 ---
 
 <div class="contentblock">
-  <div class="contenttext">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <div class="contenttext">
 
-  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
+            <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
 
     DCE-MRI is a "4D" imaging set in which 3D MRI volumes of a patient are captured at regular intervals, usually on the range of every 1-10 seconds. DCE-MRI usually tracks the progress of a high-contrast bolus of gadolinium injected into a patient with a certain pathology, usually cancer. This contrast agent is carried through the blood, and often accumulates in areas of aggressive tumor expansion. By analyzing the rate at which gadolinium accumulates in certain tissues, as well as the rate at which it is removed, one can infer certain dynamics about fluid transfer in these tissues.
 

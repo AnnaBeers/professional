@@ -9,9 +9,10 @@ blurb: "An open-source utility for segmenting glioblastoma in MRI. Currently in 
 ---
 
 <div class="contentblock">
-  <div class="contenttext">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <div class="contenttext">
 
-  <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
+            <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
 
     DeepNeuro is a software package built for using deep learning models to solve problems in neuroradiology. Currently, its one use case is multi-tissue segmentation of glioblastoma based off of contrast-enhanced MR scans. DeepNeuro will be the platform for all software applications developed by the Quantiative Tumor Imaging Lab at the Martinos Center. See it on Github <a href='https://github.com/QTIM-Lab/DeepNeuro'>here</a>. If you want to be able to segment tumors today, check out its predecessor with a less marketable name, <a href='https://github.com/QTIM-Lab/qtim_gbmSegmenter'>qtim_gbmSegmenter</a>. I am the sole creator of both projects.<br />
 

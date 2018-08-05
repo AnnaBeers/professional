@@ -13,10 +13,11 @@ stylesheet: "/css/projects/2017-10-14-iceberg-mapper.css"
 <body>
 
     <div class="contentblock">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
       <div class="contenttext">
 
-          <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
-
+            <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+            
            On May 10, 2018, Democrats on the United States House Intelligence Committee <a href="https://democrats-intelligence.house.gov/facebook-ads/social-media-advertisements.htm">released</a> 3500+ ads created by the Internet Research Agency between 2015 and 2017. The Internet Research Agency is believed to have created these ads to influence the outcome of the 2016 United States presidential election, and in general influence Americans' political views. 
            <br /><br />
            Using some <a href="https://github.com/jiren/filter.js/tree/master">open-source Javascript libraries</a> and Bootstrap, I created a tool that can parse this unweildy dataset. It lets you pick through individual ads created by the IRA, and see how many views & clicks they received, when they were posted, to which audiences, and at what cost to the advertiser. Users can also filter and sort the database as a whole, to get a sense of which ads were most popular, or which groups of people received which sorts of ads.

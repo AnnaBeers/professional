@@ -13,10 +13,11 @@ redirect-from: /projects/2017/10/14/iceberg-mapper/
 <body>
 
   <div class="contentblock">
-    <div class="contenttext">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <div class="contenttext">
 
-      <a href={{page.permalink}}><div class="portfoliohead">{{ page.title }}</div></a>
-
+            <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+    
       For my thesis in Brown University's Environmental Studies department, I set upon the task of visualizing and interpeting 130+ years of iceberg sighting data in the North Atlantic ocean. This would be the largest such dataset ever collated for North Atlantic icebergs. These iceberg sightings are collected from governmental and archival datasets, and include shipboard, aerial, radar, and satellite sightings. My thesis included the visualization app below, coded in Javascript and d3.js, and discussed some climate change insights we can take away from this dataset.<br />
       <br />
       Using the visualization tool below, you can find a few interesting things. Although this requires more quantiative analysis to be sure, you can see that the southernmost boundary of icebergs tends to recede in recent decades (2000+) as compared to a century ago (1900-1920). The obvious hypothesis there is that warmer sea temperatures may be causing icebergs to melt earlier, but this still needs to be investigated.
