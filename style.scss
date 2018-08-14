@@ -64,7 +64,6 @@ blockquote {
 		width: 90%;
 		min-width: 0px;
 		background-color: $black;
-		overflow: hidden;  
 	}
 
 }
@@ -95,7 +94,7 @@ blockquote {
 	font-family: $helvetica;
 	margin-top: 40px;
 	height: 5px;
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	border-bottom: $white 3px solid;
@@ -131,6 +130,19 @@ blockquote {
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 18px;
+
+
+	@include smallview  {
+		border-right: $white 3px solid;
+	}
+}
+
+.toolbar-row {
+	display: inline;
+
+	@include smallview  {
+		display: block;
+	}
 }
 
 .toolbaritem {	
@@ -152,7 +164,20 @@ blockquote {
 
 .contactbutton{
 
+	@include smallview  {
+		border-top: $white 3px solid;
+	}
+
 }
+
+.edgebutton {
+
+	@include smallview  {
+		border-right: 0px;
+	}
+
+}
+
 
 // Content
 
@@ -533,6 +558,7 @@ blockquote {
 .portfolioblock img {
 	width: 100%;
 	display: block;
+	margin: 0 auto;
 
 	@include smallview{
 		width: 300px;	
