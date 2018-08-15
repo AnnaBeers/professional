@@ -138,7 +138,7 @@ blockquote {
 }
 
 .toolbar-row {
-	display: inline;
+	display: inline-block;
 
 	@include smallview  {
 		display: block;
