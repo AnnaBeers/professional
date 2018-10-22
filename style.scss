@@ -193,12 +193,12 @@ blockquote {
 	background-color: $white;
 }
 
-.contentblock img{
+/*.contentblock img{
 	width: 80%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-}
+}*/
 
 .contentdate {
 	font-family: $helvetica;
@@ -224,14 +224,59 @@ blockquote {
 
 }
 
+.content-imageblock {
+	padding: 20px 0px;
+	width: 100%;
+	margin: 0 auto;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.content-imageblock-image {
+	max-width: 400px;
+	font-size: 12px;
+	line-height: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content-imageblock img {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+.content-fullwidth {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: -50vw;
+	margin-right: -50vw;
+}
+
 .contenthead{
 	font-family: $helvetica;
 	text-decoration: none;
-	font-size: 72px;
+	font-size: 60px;
 	padding: 50px 20px 30px 30px;
 	margin: 15px 0px 30px 0px;
 	border-bottom: 3px solid;
-	line-height: 95px;
+	line-height: 72px;
 	color: $black;
 
 	@include smallview{
@@ -243,15 +288,52 @@ blockquote {
 }
 
 .contenttext {
-	font-size: 18px;
-	line-height: 27px;
+	font-size: 16px;
+	line-height: 23px;
 	margin: 0px 40px 30px 40px;
-	font-family: Verdana,Geneva,sans-serif; 
+	font-family: serif; 
 	
 	@include smallview{
 		margin: 0px 8% 30px 8%;
 		line-height: 26px;
 	}
+}
+
+.caption {
+	font-size: 12px;
+	line-height: 15px;
+	font-style: italic;
+	text-align: center;
+}
+
+.contenttext h2 {
+	line-height: 36px;
+	font-size: 23px;
+}
+
+.contenttext em {
+	font-style: italic;
+}
+
+.contenttext img {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+.contenttext ul {
+	list-style-type: disc;
+	margin: 15px 0;
+}
+
+.contenttext li {
+	margin-left: 40px;
+	list-style-type: disc;
 }
 
 .toc-header{
@@ -264,7 +346,7 @@ blockquote {
 	list-style-type:disc;
     border: 3px solid $black;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     padding: 10px 15px;
     font-size: 16px;
     line-height: 26px;
@@ -532,7 +614,7 @@ blockquote {
 }
 
 .bioblock a{
-	color: $link;
+	color: $link !important;
 }
 
 // Portfolio

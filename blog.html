@@ -9,7 +9,7 @@ header-title: blog
 
     {% for post in site.categories.blog %}
 
-    <a href={{post.permalink}}><li>[{{post.category}}] {{post.title}}</li></a>
+    <a href="{{ site.baseurl }}{{post.url}}"><li>[{{post.category}}] {{post.title}}</li></a>
 
     {% endfor %}
 
