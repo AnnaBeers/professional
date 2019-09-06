@@ -308,7 +308,8 @@ blockquote {
 
 .contenttext h2 {
 	line-height: 36px;
-	font-size: 23px;
+	font-size: 26px;
+	font-weight: bold;
 }
 
 .contenttext em {
@@ -636,14 +637,6 @@ blockquote {
 }
 
 .portfolioimage {
-	max-width: 400px;
-	font-size: 12px;
-	line-height: 15px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.portfolioblock img {
 	width: 100%;
 	display: block;
 	margin: 0 auto;
@@ -653,6 +646,17 @@ blockquote {
 		display: block;
 	}
 }
+
+// .portfolioblock img {
+// 	width: 100%;
+// 	display: block;
+// 	margin: 0 auto;
+
+// 	@include smallview{
+// 		width: 300px;	
+// 		display: block;
+// 	}
+// }
 
 .portfoliohead {
 	font-family: $helvetica;
@@ -680,7 +684,7 @@ blockquote {
 	line-height: 18px;
 	border: 3px $white solid;
 	padding: 0;
-	height: 160px;
+	height: 180px;
 	width: 513px; /* This is also rough */
 	margin: 30px 0 0 0;
 	color: $black;
