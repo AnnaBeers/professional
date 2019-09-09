@@ -288,8 +288,8 @@ blockquote {
 }
 
 .contenttext {
-	font-size: 20px;
-	line-height: 30px;
+	font-size: 18px;
+	line-height: 25px;
 	margin: 0px 40px 30px 40px;
 	font-family: serif; 
 	
@@ -421,7 +421,7 @@ blockquote {
 	margin: 0px;
 	line-height: 0px;
 	text-align: center;
-	width: 45%;
+	width: 47.5%;
 	height: 150px;
 	display: inline-block;
 	position: relative;
@@ -463,7 +463,7 @@ blockquote {
 	font-size: 22px;
 	position: absolute;
 	background: rgba(0,0,0,1.0);
-	border: solid 3px #E0E0E0;
+	border: solid 3px $white;
 	color: $white;
 	display: table;
 	height: 32px;
@@ -471,7 +471,7 @@ blockquote {
 	top: 38%;
 	left: 25%;
 	z-index: 1;
-	opacity: 0;
+	opacity: 1;
 	-webkit-transition: opacity 300ms;
 	-moz-transition: opacity 300ms;
 	-o-transition: opacity 300ms;
@@ -500,7 +500,15 @@ blockquote {
 }
 
 .homeblock:hover .homecaption {
-	opacity: 1;	
+	opacity: 0;
+
+	@include smallview {
+		opacity: 1;
+	} 
+
+	@include tiny-mobile {
+		opacity: 1;
+	}
 }
 
 .homecaption span {
