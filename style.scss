@@ -270,32 +270,33 @@ blockquote {
 }
 
 .contenthead{
-	font-family: $helvetica;
+	font-family: serif;
 	text-decoration: none;
-	font-size: 60px;
-	padding: 50px 20px 30px 30px;
+	font-size: 42px;
+	padding: 35px 20px 30px 30px;
 	margin: 15px 0px 30px 0px;
 	border-bottom: 3px solid;
-	line-height: 72px;
+	line-height: 58px;
 	color: $black;
 
 	@include smallview{
-		font-size: 50px;
-		line-height: 66px;
+		font-size: 36px;
+		line-height: 44px;
 		padding: 55px 20px 25px 30px;
 		margin: 15px 0px 30px 0px;
 	}
 }
 
 .contenttext {
-	font-size: 18px;
-	line-height: 25px;
+	font-size: 16px;
+	line-height: 22px;
 	margin: 0px 40px 30px 40px;
 	font-family: serif; 
 	
 	@include smallview{
+		font-size: 16px;
 		margin: 0px 8% 30px 8%;
-		line-height: 26px;
+		line-height: 24px;
 	}
 }
 
@@ -304,11 +305,23 @@ blockquote {
 	line-height: 15px;
 	font-style: italic;
 	text-align: center;
+	margin: 0 auto;
+	max-width: 500px;
+
+	@include smallview{
+		max-width: 300px;
+	}
 }
 
 .contenttext h2 {
 	line-height: 36px;
 	font-size: 26px;
+	font-weight: bold;
+}
+
+.contenttext h3 {
+	line-height: 26px;
+	font-size: 22px;
 	font-weight: bold;
 }
 
@@ -520,7 +533,7 @@ blockquote {
 // Recent
 
 .recentblock {
-	padding: 45px 0px 5px 0px;
+	padding: 30px 0px 5px 0px;
 	width: 100%;
 	margin: 0 5%;
 	color: $white;

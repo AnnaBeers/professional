@@ -1,0 +1,192 @@
+---
+layout: blog
+title:  "Project Report: Generating Fake Book Pages Using a GAN"
+date:   2019-11-01
+category: blog
+header-title: blog
+icon: "/resources/blog/2019-09-11-deepzine/page_example_alternate.png"
+blurb: "A project report on using generative adversarial networks to make synthetic book pages."
+---
+
+<ul class="toc">
+table of contents
+<li><a href="#background">Background</a></li>
+<li><a href="#dataset">So Why Pages?</a></li>
+<li><a href="#implementation">Which Implementation?</a></li>
+<li><a href="#results">Interesting Results</a></li>
+<li><a href="#computing">A Note on Computing Resources</a></li>
+<li><a href="#art">Art Decider: Not Art</a></li>
+</ul>
+
+<em>Note: this post presumes some background in programming for machine learning.</em>
+<br /><br />
+
+<div class='content-fullwidth'>
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/page_example.png" alt=""{{ site.baseurl }}/>
+</div>
+<div class="caption"><br />Two images of book pages that were created by a generative adversarial network (GAN).</div>
+<br/>
+
+<h2 id="background">Background</h2>
+<br />
+
+In January of 2018, I got the flu. Among other horrible symptoms, I had totally lost my ability to sleep for more than 2 hours. I needed a way to fill my time, and take my mind off the muscle aches and the chicken noodle soup I couldn’t taste. Because it’s very important to never do paid work on sick time, so I started fishing around for machine learning projects totally unrelated to medical imaging. My search for distraction led me to try and re-implement a version of the <em>progressively growing generative adversarial network (PGGAN)</em> by <a href="https://arxiv.org/abs/1710.10196">Karras et al.</a>
+<br /><br />
+
+What is a progressively growing GAN? Back in the day (okay, 2017), it was difficult to synthesize high-resolution images using generative adversarial networks (GANs). At resolutions higher than, say, 128x128 pixels, GANs were unable to capture the union between macro structures and fine details that characterize real images. People had tried, for example, to synthesize images of people’s faces at high resolution (1024x1024), but the results were just flat, untextured expanses of skin with eyes and mouths awkwardly smushed in. To make matters worse, training GANs with the method previously available with computationally expensive, making training high-resolution GANs out of the reach of all but the most well-resourced labs.
+<br /><br />
+
+<div class='content-fullwidth'>
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/flat_faces.png" data-lightbox="image-1" data-title="My caption" alt=""{{ site.baseurl }}/>
+</div>
+<div class="caption"><br /><a href="https://arxiv.org/abs/1706.00082">Figure 3</a>, "Megapixel Size Image Creation using Generative Adversarial Networks," Marco Marchesi.</div>
+<br />
+
+Karras et al.'s "progressive growing" method surmounted these difficulties. Their innovation was that they would train networks in pieces, starting with a low resolution image synthesis network, and moving to a high resolution image synthesis network. The previous resolution would be used as initialization for the subsequent, higher resolution, which means that the network isn't starting from scratch at each resolution. So, by training a 4x4 image generator, you're on your way to creating an 8x8 image generator, and then a 16x16, and so on and so forth until you get to 2048x2048, or even larger.
+<br /><br />
+
+<div class='content-fullwidth'>
+<img style="max-width:700px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/pggan_schematic.png" alt=""{{ site.baseurl }}/>
+</div>
+<div class="caption"><br /><a href="https://arxiv.org/abs/1710.10196">Figure 1</a>, "Progressive Growing of GANs for Improved Quality, Stability, and Variation," Karras et al.</div>
+<br />
+
+The results were <a href="https://www.youtube.com/watch?v=G06dEcZ-QTg">very impressive</a>. The authors generated high-resolution images far more realistic than achieved by any previous GAN architectures, trained with much higher computational efficiency. The progressive growing method shown in this paper was quickly mimicked by others, and today it has become a commonplace tool in newer works, mixed and matched with other GAN-training methods. It also spurred the latent space interpolation craze on Twitter (<a href="https://twitter.com/knjcode/status/1102771002222637056">ramen!</a>), which we would see popping up again after <a href="https://arxiv.org/abs/1809.11096">BigGAN</a> was published (<a href="https://twitter.com/Pinar_Viola/status/1177251604724105219">monkeys!!</a>).
+<br /><br />
+
+<img style="max-width:700px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/figure_5_pggan_karras.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br /><a href="https://arxiv.org/abs/1710.10196">Figure 5</a>, "Progressive Growing of GANs for Improved Quality, Stability, and Variation," Karras et al.</div>
+<br />
+
+<h2 id="dataset">So Why Pages?</h2>
+<br />
+
+<a href="http://anderff.com/portfolio/2012/10/14/bluestockings/">I was a print designer in undergrad</a>, and study the news now, so I've spent a lot of time looking at newspapers. Most pages have repetitive elements, and the work of design is partly to make decisions about where to place these elements relative to each other. Some examples of these elements are headlines, paragraphs, page numbers, images, captions, and footnotes. If you were to look at a newspaper every day for months, you would see some of these design elements move around, but mostly they would obey certain rules of design dictated by common conventions and aesthetics. I wanted to see if a GAN could replicate basic print design principles when trained on a dataset of pages that contained many or all of these elements.
+<br /><br />
+
+<img style="max-width:350px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/nyt_image.jpg" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />Example of all the design elements that go into a page. Headlines, text, masthead, images, more! <a href="https://twitter.com/nytimes/status/746219828596269057">From tweet.</a></div>
+<br />
+
+So, the first question was: which dataset of pages to use? After some searching, I found that the <a href="">Internet Archive</a> had loads of scanned pages of both newspapers and other publications available online, and a nifty <a href=”https://github.com/jjjake/internetarchive”>Python API</a> that you can use to download them. Some of the Internet Archive's datasets were likely too small to train an effective GAN (less than 1000 pages). Others seemed too varied from page to page to learn an effective distribution without some form of mode collapse (a term for when a GAN only learns an often repetitive subset of the true distribution of images). Still other datasets were just too basic to be interesting, such as novels that contained uninterrupted blocks of text for hundreds of pages at a time.
+<br /><br />
+
+I end up using a dataset of pages from the archived research works of the <a href="">Marine Biological Library (MBL)</a> and the <a href="">Woods Hole Oceanographic Institute (WHOI)</a>. These pages had charts, headers, page numbers, images, and varied stylistic choices from report to report, but still followed a basic, uniform design structure. I have also spent quite a bit of time in WHOI myself visiting some researcher friends there, so the choice was slightly sentimental :).
+<br /><br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/example_real_page.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />An example of a page from the MBL-WHOI collection.</a></div>
+<br />
+
+<h2 id="implementation">Which Implementation?</h2>
+<br />
+
+It was early days for the PGGAN when I worked on this project. Unlike today, Github did not contain <a href=”https://github.com/search?q=pggan”>endless functioning reimplementations</a> of Karras et al.'s code, so it seemed like I might have had to use the original. This will make you feel old, but Karras' original code was written in <a href="http://deeplearning.net/software/theano/"><em>Theano</em></a>, which I had not yet used and had no intention of trying to figure out. I was saved by <a href="https://github.com/zhangqianhui">Jichao Zhang</a>, a student at Shandong University <a href="https://scholar.google.com/citations?user=SPEECTIAAAAJ&hl=en">working on GANs</a>. He had mocked up a version in TensorFlow, which I forked.
+<br /><br />
+
+Zhang's implementation was complicated. I have long held that people who code in TensorFlow for long enough (e.g. me) develop an irreversible brain-sickness that permanently and negatively affects the way they architect both their code and their thoughts (but hey, maybe <a href="https://twitter.com/kchonyc/status/1179391606321029120">TensorFlow 2</a> will solve that!). For example, in Zhang's implementation, you had to instantiate the entire PGGAN at full-size at each training level, explicitly select the reduced portion of weights you wanted to train for that resolution of the GAN, and then craft de novo cost functions at each image resolution. This non-intuitive training method, compared with the even spookier looking code required to implement it, was probably one of the bigger barriers to sharing my GAN work with my colleagues down the line. Lesson learned! Rearchitect your code if you want to share it with people.
+<br /><br />
+
+<div class='content-fullwidth'>
+<img style="max-width:700px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/code_example.png" alt=""{{ site.baseurl }}/>
+</div>
+<div class="caption">Everyone knows that good code requires regular 6-line block comments to be intelligible to its users.</div>
+<br />
+
+<h2 id="results">Interesting Results</h2>
+<br />
+
+The most interesting result is that it worked! After a week or so rooting out bugs, I was able to generate high-resolution pages filled with pseudo-letters, columns of text, fake page numbers, and psychedelic illustrations. Here are the big takeaways.
+<br /><br />
+
+<h3 id="layouts">Page Layouts</h3>
+
+<div class='content-fullwidth'>
+<img style="max-width:800px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/page_example_2.png" alt=""{{ site.baseurl }}/>
+</div>
+<div class="caption">A one-column layout and an image/chart layout. Notably, I resized rectangular pages to square, so all of the pages generated seem a little compressed.</div>
+<br />
+
+We can start with the macro page design. DeepZine was very good at creating a variety of page layouts, with one or two columns, ghostly half-charts, interspersed headers, page numbers (!), and full-page ink splotch illustrations. Interpolating between two points in the latent space shows how some of the latent variables control things like margins, line spacing, and the size of the charts and images. Everyone gets angry when you compare deep learning algorithms to people, but the way it constantly resizes text and images to fit new designs very much reminded me of myself, testing print layouts during work nights at the magazine.
+<br /><br />
+
+<h3 id="language">Synthetic Language</h3>
+<br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/text_example.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />Example of synthetic text generated by DeepZine</div>
+<br />
+
+Most people find DeepZine’s synthetic language to be its most interesting result. Pages generated by the GAN have curly, Elvish-like script that morphs as you advance through the latent space. It's an amazingly convincing solution to what I thought would be the GANs main weakness: its inability to reproduce text with any detail or, of course, meaning. I had envisioned thick, wavy black lines drawn on a page; what I got was a series of "words" of different length with varied letter structure that, when you squint, were imperceptibly different from some real languages' written scripts.
+<br /><br />
+Those in the machine learning community have seen many iterations of this fake language phenomenon before and since DeepZine came about, especially in those GANs that generate <a href="https://twitter.com/goodfellow_ian/status/937406530743287808?lang=en">cat memes</a>. I've seen a more interesting variant when working on medical images, specifically during my attempt to re-apply the same PGGAN process to <a href="https://arxiv.org/abs/1805.03144">retinal fundus photographs</a>. In those cases, retinal images had imprinted patient notes in the bottom-right corner of every image in the exact same location, often with some of the same words. In this case, the GAN would generate precise English words in the bottom right corners, indistinguishable from the real text annotations, and abruptly flip between words as one traversed the latent space. It thus seems that there may be a trade-off between realism of text and the number and position of unique words in the training dataset.
+<br /><br />
+
+<h3 id="illustrations">Ink Blot Illustrations</h3>
+<br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/ink_blot_example.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />There were even weirder ones than this, I promise! I'm just too lazy to find them right now :)</div>
+<br />
+
+So what’s up with those weird inky illustrations? To me, the crude, blotchy images illustrate the dynamic trade-offs that the generator and discriminator make during training. The original dataset of pages is biased towards text and table images, with fewer illustrations. Because there are fewer illustrations, the discriminator cannot distinguish between real and fake images as well, and the generator does not need to work as hard to create them.
+<br /><br />
+
+I also find it interesting that DeepZine creates any images at all. I would have expected mode collapse, where the larger number of text pages promised that every page would have text, but apparently not! Credit again to the PGGAN creators.
+<br /><br />
+
+<h3 id="latent">Latent Space Interpolations</h3>
+<br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/clearly_going_to_hell_for_this_magic.gif" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />If you figure out a good way to answer "what am I looking at" when you show someone this GIF, send me a message.</div>
+<br />
+
+The most visually-compelling outputs from DeepZine are its <em>latent space interpolations</em>, in which pages continuously morph from one design to another. I have always wanted to know more about the structure of latent spaces in GANs. Here are two questions I had about latent spaces, likely familiar to those who have spent time playing with GANs.
+<br /><br />
+
+The first question: how many unique pages are there in the whole GAN? It is likely a finite number, as pages stop changing if you push their latent codes into magnitudes outside of the training latent distribution (e.g. [100, 100, 100, ..., 100]). Different "rates of change" in images as one performs latent space interpolations implies that different pockets of latent space are likely not equally sized. This means that calculating the number of unique pages via some proportion to the size of the overall training space will probably not work. This all makes me wonder: could the latent space of a GAN be constrained to create different numbers of images in its space, or images whose corresponding section of latent space was differently sized or shaped? Hopefully someone will figure that out sooner or later.
+<br /><br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/origin_pic.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />A page found near the origin of the latent space. It is spooky to me how it is essentially a "zero" page.</div>
+<br />
+
+The second question: do certain parts of latent space create similar representations across all GANs? One fascinating aspect of the latent space that has emerged in all my training runs of DeepZine is that the latent code at the origin [0, 0, 0, ..., 0] corresponds to a blank page. Weird! It felt like a union between human understandings of zero (empty, nothing) and what should be an unrelated conception of zero by the GAN in latent space. I have found this in other GANs too, where the image generated by the origin is often devoid of content in a very "zero" kind of way. This pattern might imply that image phenotypes in latent space really are conditioned on mechanisms similar to sliders, where the further you get from zero, the more extreme a certain feature is. As always in machine learning, other people are on the case. Check <a href="https://github.com/Newmu/dcgan_code/issues/12">this Github issues thread</a> for a good example.
+<br /><br />
+
+<h3 id="filterviz">Filter Visualizations</h3>
+<br />
+
+<img style="max-width:500px" src="{{ site.baseurl }}/resources/blog/2019-09-11-deepzine/filterviz_example.png" alt=""{{ site.baseurl }}/>
+<div class="caption"><br />Two images generated by maximizing the activations of two separate convolutions in DeepZine.</div>
+<br />
+
+Many people in the deep learning community have seen convolutional filter visualizations before. To create a filter visualization, one can take a randomly-initialized, white noise image, and iteratively alter it such that it maximizes the value of a downstream filter in a pre-trained neural network. If all works well, this process will create a qualitative visualization of what features that filter is "selecting" for, if that is indeed what the filter is doing. Particularly marvelous examples of this have been shown in a <a href="https://distill.pub/2017/feature-visualization/">Distill article on feature visualization</a>, and in a package <a href="https://github.com/tensorflow/lucid">subsequently developed by Google</a>. Usually, feature visualizations are applied to classification networks, showing how one filter might focus in on, say, a cat's ear for classifying pictures of a cat.
+<br /><br />
+Using some code ripped from the Lucid toolkit, I applied the feature visualization method to convolutional filters in the discriminator of DeepZine. As far as I know, feature visualization had not been publicly applied to GANs before this, so it was exciting! By visualizing layers at further levels of abstraction in the discriminator, one could see repetitive structural elements in the pages emerge: columns, lines, charts, etc. Check out the image above!
+<br /><br />
+I still don't know what I'm really supposed to take away from feature visualizations, particularly in the discriminator of a GAN. The visualizations show that <em>something</em> is going on, but for me, do not provoke follow-up questions. Would be very interested if it did for someone else!
+<br/><br />
+
+<h2 id="computing">A Note on Computing Resources</h2>
+<br />
+
+After I put DeepZine on Twitter, I got an interesting message from Robbie Barat, <a href="https://robbiebarrat.github.io/">an artist that uses deep learning methods</a>, about how I was able to train DeepZine without access to huge amounts of GPU resources. According to the paper, he told me, training results akin to NVIDIA's original results would take 1-2 weeks on the most expensive NVIDIA GPU available at the time.
+<br /><br />
+
+In reality, I was able to train DeepZine in probably 1.5-2 days, on an NVIDIA GPU with less memory than those recommended by the NVIDIA team. I can think of a few explanations for why.
+<br /><br />
+
+The most obvious explanation is that I constructed my PGGAN to use fewer filters. In DeepZine, as opposed to the original PGGAN, I had throttled the filter number and batch size at higher resolutions to fit on the GPU card I had available. At the final resolution (1024x1024), I was using a batch size of 4 and only 16 convolutional filters. With that few filters, it could be that the filters in the higher resolutions are acting more similarly to deep learning upsampling algorithms that just reduce aliasing effects, rather than genuine GANs that create de novo fine-level details. This could even be the explanation for why the generated text isn't strictly English letters. This is all to say that I almost certainly did not achieve the quality of the original PGGAN work in my own work, and I had trained with NVIDIA's methods, I probably would have had even more interesting results.
+<br /><br />
+
+A more sinister viewpoint is that NVIDIA (<a href="https://www.fastcompany.com/90244767/see-the-shockingly-realistic-images-made-by-googles-new-ai">and all big industry labs</a>) intentionally uses as much GPU power as possible in their public works on the most expensive GPUs they currently offer, regardless of output quality, so that people will be pressured to buy more GPUs. Wouldn't fault em'! But probably not the <em>whole</em> case.
+<br /><br />
+
+<h2 id="art">Art Decider: Not Art</h2>
+<br />
+Many of my friends, especially outside of machine learning, imply one way or another that creations like these are a form of digital art or even "AI art." I admit, I also describe it this way sometimes as an easy entrypoint to the project. But I have never thought of this project, or similar projects that I work on, in this way.
+<br /><br />
+I work on projects like these as neat objects that help me answer questions I have about machine learning, or other things. I found pages to be a good, limited example of what GANs could do that would be easier to grapple with than, say, human faces. The interesting visualizations also provoke new questions for me to explore in future projects. Other people online have different motivations for using GANs to create visualizations, particularly <a href="https://twitter.com/glagolista?lang=en">Helena Sarin</a>, <a href=”https://twitter.com/JoanneHastieArt”>Joanna Hastie</a>, and <a href="https://twitter.com/DrBeef_">Robbie Barat</a>, and if you're interested in AI art, I suggest that you follow them!

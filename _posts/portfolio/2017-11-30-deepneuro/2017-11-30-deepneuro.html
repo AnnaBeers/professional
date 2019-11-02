@@ -5,60 +5,61 @@ title:  "DeepNeuro"
 icon: "/resources/portfolio/deepneuro_small.png"
 date:   2017-11-30
 category: portfolio
-blurb: "An open-source utility for segmenting glioblastoma in MRI. Currently in use in glioblastoma clinical trials at Mass General Hospital, and is being tested at UCSF, Duke, and the Tata Memorial Hospital in India."
+blurb: "An open-source utility for segmenting glioblastoma in MRI. Currently in use in glioblastoma clinical trials at Mass General Hospital."
 ---
 
-<div class="contentblock">
+<body>
+
+    <div class="contentblock">
       <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
       <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
       <div class="contenttext">
 
-    DeepNeuro is a software package built for using deep learning models to solve problems in neuroradiology. Currently, its one use case is multi-tissue segmentation of glioblastoma based off of contrast-enhanced MR scans. DeepNeuro will be the platform for all software applications developed by the Quantiative Tumor Imaging Lab at the Martinos Center. See it on Github <a href='https://github.com/QTIM-Lab/DeepNeuro'>here</a>. If you want to be able to segment tumors today, check out its predecessor with a less marketable name, <a href='https://github.com/QTIM-Lab/qtim_gbmSegmenter'>qtim_gbmSegmenter</a>. I am the sole creator of both projects.<br />
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/DeepNeuro.gif" alt="DeepNeuro logo."/>
+          <div class="caption"><br />A 3D Convolutional Neural network iteratively learns to annotate a tumor. (gif by me, from a model developed in DeepNeuro). <a href="https://github.com/QTIM-Lab/DeepNeuro">Github link here.</a></div>
+          </div>
+
+          <a href="https://github.com/QTIM-Lab/DeepNeuro">DeepNeuro</a> is a software package I created for training deep learning algorithms on radiology data, and particularly neuroradiology data. It was developed for two audiences. The first audience is radiologists with some programming experience or technical support, who want to implement pre-trained machine learning algorithms with a minimum of effort. The second audience is Python programmers in radiology who may not have experience with programming for deep learning, especially as applied to radiology data, and want to use some out-of-the-box algorithm functions to train their own networks.
+          <br /><br />
+
+          DeepNeuro comes with pre-trained networks for performing segmentation of glioblastoma (particularly aggressive brain tumors), melanoma metastases in the brain (often smaller, more numerous and homogenous brain tumors), stroke lesions, and segmentation of brain tissue (an essential preprocessing step for downstream analyses). All of these networks are made available via Docker containers, and can be run via command-line utilities in Python. <a href="https://colab.research.google.com/github/QTIM-Lab/DeepNeuro/blob/master/notebooks/Run_Inference.ipynb">Tutorials</a> have been developed in Google Colab to facilitate this process.
+          <br /><br />
+
+          For those who wish to train their own algorithms, DeepNeuro has pre-built functions that allow inexperienced or time-crunched users to get started with a minimum of training. These include pre-built functions for image segmentation (<a href="https://arxiv.org/abs/1505.04597">U-Net</a>), image classification, and image sythesis (<a href="https://arxiv.org/abs/1710.10196">PGGAN</a>). Data-loaders for the confusing variety of medical imaging data formats are available, and pre-processing and data augmentation functions specific to radiology are also included. Functions for evaluating the accuracy of users' algorithms and visualizing training progress are also available.
+          <br /><br />
+
+          I developed DeepNeuro while working as a research asssitant and then programmer at the Massachusetts General Hospital (MGH). I worked in the <a href="https://qtim-lab.github.io/">Quantitative Translational Imaging Lab</a> (QTIM) supervised by Dr. Jayashree Kalpathy-Cramer, Dr. Elizabeth Gerstner, and Dr. Bruce Rosen. Myself and members of our lab have used DeepNeuro to do research on several areas of radiology, including research on glioblastoma, melanoma metastases, adrenoleukodystrophy, ischemic stroke, radiation therapy, and other projects. At the time of my departure from MGH, we were testing DeepNeuro with collaborators in MGH and out, including the Tata Memorial Hospital in India and the MD Anderson Cancer Center in Houston.
+          <br /><br />
+
+          DeepNeuro is still under development at QTIM with the lab's current staff. The next challenge for DeepNeuro, other than building additional pre-trained networks and machine learning functions, is to bridge the gap between deep learning and actual clinical practice. This involves many steps to make the package easier to use for lay-users and technical support teams, such as graphical user interfaces and server-mode. Collaborators the Center for Clinical Data Science (CCDS) at Massachusetts General Hospital, and well as technicians in MGH itself can help us bridge that gap.
+          <br /><br />
+
+          You can see an arxiv paper for DeepNeuro <a href="https://arxiv.org/abs/1808.04589">here</a>. An updated paper is currently undergoing revisions in a peer-reviewed journal, which hopefully I'll get to soon :). The following papers have used DeepNeuro, or involve code developed for DeepNeuro:
+
+          <ul>
+            <li>Beers, Andrew, Ken Chang, James Brown, Elizabeth Gerstner, Bruce Rosen, and Jayashree Kalpathy-Cramer. 2018. “Sequential Neural Networks for Biologically Informed Glioma Segmentation.” In Medical Imaging 2018: Image Processing, 10574:1057433. International Society for Optics and Photonics. <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10574/1057433/Sequential-neural-networks-for-biologically-informed-glioma-segmentation/10.1117/12.2293941.short">link.</a></li>
+            <li>Chang, Ken, Andrew L. Beers, Harrison X. Bai, James M. Brown, K. Ina Ly, Xuejun Li, Joeky T. Senders, et al. 2019. “Automatic Assessment of Glioma Burden: A Deep Learning Algorithm for Fully Automated Volumetric and Bi-Dimensional Measurement.” Neuro-Oncology, June. <a href="https://doi.org/10.1093/neuonc/noz106">https://doi.org/10.1093/neuonc/noz106</a>.</li>
+            <li>Beers, A., J. Brown, K. Chang, and J. P. Campbell. 2018. “High-Resolution Medical Image Synthesis Using Progressively Grown Generative Adversarial Networks.” arXiv Preprint arXiv. <a href="https://arxiv.org/abs/1805.03144">https://arxiv.org/abs/1805.03144</a>.</li>
+            <li>Chang, K., J. Brown, A. Beers, J. Kalpathy-Cramer, and H. Ay. 2019. “Viscerotoxic Brain Infarcts: The Results of Heart-Brain Interactions Study.” Stroke; a Journal of Cerebral Circulation. <a href="https://www.ahajournals.org/doi/abs/10.1161/str.50.suppl_1.162">https://www.ahajournals.org/doi/abs/10.1161/str.50.suppl_1.162</a>.</li>
+            <li>Silva, Michael A., Jay Patel, Vasileios Kavouridis, Troy Gallerani, Andrew Beers, Ken Chang, Katharina V. Hoebel, et al. 2019. “Machine Learning Models Can Detect Aneurysm Rupture and Identify Clinical Features Associated with Rupture.” World Neurosurgery 131 (November): e46–51. <a href="https://www.sciencedirect.com/science/article/pii/S1878875019318893">link</a>.</li>
+            <li>Bakas, S., M. Reyes, A. Jakab, and S. Bauer. 2018. “Identifying the Best Machine Learning Algorithms for Brain Tumor Segmentation, Progression Assessment, and Overall Survival Prediction in the BRATS Challenge.” arXiv Preprint arXiv. <a href="https://arxiv.org/abs/1811.02629">https://arxiv.org/abs/1811.02629</a>.</li>
+            <li>Winzeck, Stefan, Arsany Hakim, Richard McKinley, José A. A. D. S. R. Pinto, Victor Alves, Carlos Silva, Maxim Pisov, et al. 2018. “ISLES 2016 and 2017-Benchmarking Ischemic Stroke Lesion Outcome Prediction Based on Multispectral MRI.” Frontiers in Neurology 9 (September): 679. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6146088/">link</a>.</li>
+          </ul>
+
+          <br /><br />
+
+          Some older screenshots of DeepNeuro's outputs can be found below.
+
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/DeepNeuro_2D.gif" alt=""{{ site.baseurl }}/>
+          <div class="caption"><br />A 3D Convolutional Neural network iteratively learns to annotate a tumor. (gif by me, from a model developed in DeepNeuro).</div>
+          </div>
+
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/Segmentation_Example.png" alt=""{{ site.baseurl }}/>
+          <div class="caption"><br />Results of DeepNeuro on a sample glioblastoma case. Enhancing tumor is labeled blue, peritumoral edema is labeled yellow, and necrotic tissue is labeled green.</div>
+          </div>
 
       </div>
   </div>
-
-<div class="portfolioblock">
-
-<div class="portfolioimage">
-<img src="{{ site.baseurl }}/resources/portfolio/DeepNeuro.gif" alt=""{{ site.baseurl }}/><br />
-<br />
-<em>A 3D Convolutional Neural network iteratively learns to annotate a tumor. (gif by me, from DeepNeuro model)</em>
-</div>
-
-</div>
-
-<div class="contentblock">
-  <div class="contenttext">
-
-    <br />
-    The glioblastoma segmentation module in DeepNeuro uses a 3D U-Net model built in Keras with a Tensorflow backend. Many segmenters based on deep learning have struggled with false positives -- healthy tissue being marked as tumor. Our model gets around this by constraining predictions of "enhancing tumor", usually a signal of aggressive tumor growth, to those areas already identified as tumor edema, usually a wider area that in glioblastoma almost always surrounds the enhancing tumor. This has added a consistency to segmentations that is necessary for clinical usage, and has reduced the amount of time spent on quality control by our clinician significantly. We've also built a pre-processing pipeline that reduces differences between scans from different institutions, thus increasing the reproduciblity of our results. <br />
-    <br />
-    A frequent problem in neuroimaging is that many of the most useful, publication-supported data analysis methods are split between a thousand different packages, each with different and highly-specific installation requirements. This prevents the easy distribution of software packages that integrate these softwares together. We get past this by deploying DeepNeuro and qtim_gbmSegmenter in a nvidia-enabled Docker container. Docker containers are similar to virtual machines, and are effectively effecient ways to run single-application VMs from an internal saved state. NVIDIA has extended the Docker model to add support for their GPUs -- essential for quick inference time in deep learning models.<br />
-    <br />
-    Currently, qtim_gbmSegmenter is in use in six glioblastoma clinical trials at Massachusetts General Hospital, and is being tested at UCSF, Duke, and Tata Memorial Hospital in India. You can see a description of its methods for glioblastoma segmentation here: <a href="https://arxiv.org/pdf/1709.02967.pdf">link</a>.
-    <br />
-    <br />
-
-</div>
-</div>
-
-<div class="portfolioblock">
-
-<div class="portfolioimage">
-<img src="{{ site.baseurl }}/resources/portfolio/DeepNeuro_2D.gif" alt=""{{ site.baseurl }}/><br />
-<br />
-<em>Similar gif as above, locating peritumoral edema from a 2D perspective. (gif by me)</em>
-</div>
-
-</div>
-
-<div class="portfolioblock">
-
-<div class="portfolioimage">
-<img src="{{ site.baseurl }}/resources/portfolio/Segmentation_Example.png" alt=""{{ site.baseurl }}/><br />
-<br />
-<em>Results of DeepNeuro on a sample glioblastoma case. Enhancing tumor is labeled blue, peritumoral edema is labeled yellow, and necrotic tissue is labeled green.</em>
-</div>
-
-</div>

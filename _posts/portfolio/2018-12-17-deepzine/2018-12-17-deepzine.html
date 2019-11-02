@@ -1,0 +1,39 @@
+---
+layout: default
+header-title: portfolio
+title:  "DeepZine"
+icon: "/resources/portfolio/page_icon.png"
+date:   2019-11-01
+category: portfolio
+blurb: "Generating synthetic book pages using a progressively growing generative adversarial network (PGGAN)."
+---
+
+
+<body>
+
+    <div class="contentblock">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+      <div class="contenttext">
+
+        <div class='content-fullwidth'>
+        <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/page_example.png" alt=""{{ site.baseurl }}/>
+        </div>
+        <div class="caption"><br />Two images of book pages that were created by a generative adversarial network (GAN).</div>
+        <br/>
+
+          This project is, broadly, a particular implementation of the Progressively Growing Generative Adversarial Network (PGGAN). This architecture was first developed by Karras et al. in "Progressive Growing of GANs for Improved Quality, Stability, and Variation". The code in this project was based on was developed by the Github user <a href="https://github.com/zhangqianhui">Jichao Zhang's</a> <a href="https://github.com/zhangqianhui/progressive_growing_of_gans_tensorflow">Tensorflow implementation of the PGGAN</a>, although some significant changes have been made since.
+          <br /><br />
+
+          While the classic implementations of the PGGAN so far have been to make high-resolution, realistic faces, objects, and memes, this implementation generates synthetic book pages! It does this by downloading a set number of print pages from the Internet Archive using their Python API, preprocessing them into images of a regular square shape, and then feeding them into the original PGGAN architecture. You can read documentation for this project <a href="https://github.com/AndrewBeers/DeepZine">here</a>.
+          <br /><br />
+          This project was developed as a sort of toy dataset for other work on <a href="https://arxiv.org/abs/1805.03144">synthesizing high-resolution medical images</a> using the PGGAN. One of the things I noticed while training medical image PGGANs was that some repetitive overlaid clinical annotations were reproduced letter-for-letter in the synthesized images. I wanted to see what the PGGAN would do on a dataset of purely text. I downloaded archived scientific reports from the <a href="https://archive.org/details/MBLWHOI">Woods Hole Oceanographic Institute</a>, and found the result to be fascinating. Instead of English letters, there were dreamlike pseudo-letters, arranged in fake paragraphs, in fake columns, with fake headers and fake page numbers. Cover pages, tables, and figures swirled together into abstract ink blot pages when there was no text to generate. It was mesmerizing, and I think worth sharing :).
+          <br /><br />
+          You can see a project report for this portfolio item here: <a href="{{ site.baseurl }}/blog/2019/11/01/deepzine/">Project Report: Generating Fake Book Pages Using a GAN</a>.
+
+    </div>
+</div>
+
+
+</body>
+</html>
