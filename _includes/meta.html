@@ -1,0 +1,21 @@
+    <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot" content="noodp">
+
+    {% if page.excerpt %}
+    <meta name="description" content="media researcher studying far-right movements, creator culture, and 'AI' search engines" />
+    <meta property="og:description" content="media researcher studying far-right movements, creator culture, and 'AI' search engines" />
+    {% else %}
+    <meta name="description" content="media researcher studying far-right movements, creator culture, and 'AI' search engines">
+    <meta property="og:description" content="media researcher studying far-right movements, creator culture, and 'AI' search engines" />
+    {% endif %}
+    <meta name="author" content="{{ site.name }}" />
+
+    {% if page.title %}
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="twitter:title" content="{{ page.title }}" />
+    {% endif %}

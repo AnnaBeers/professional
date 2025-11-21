@@ -1,0 +1,45 @@
+---
+layout: default
+header-title: portfolio
+title:  "The Russian Ad Explorer"
+icon: "/resources/russian_ad_screenshot.png"
+date:   2018-05-09
+category: portfolio
+blurb: "A data explorer for the 3500+ ads bought by the Russian Internet Research Agency (IRA). Contains links to original data, and a dervied JSON dataset from PDF files containing ads. Made with JS and Bootstrap."
+---
+
+
+<body>
+
+    <div class="contentblock">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+      <div class="contenttext">
+
+          <div class="content-imageblock">
+
+          <div class="content-imageblock-image">
+          <img src="{{ site.baseurl }}/resources/russian_ad_screenshot.png" alt=""{{ site.baseurl }}/><br />
+          <em>A sample ad from the IRA ad release. <a href="https://russian-ad-explorer.github.io">Link to data explorer here.</a></em>
+          </div>
+
+          </div>
+              
+           On May 10, 2018, Democrats on the United States House Intelligence Committee <a href="https://democrats-intelligence.house.gov/facebook-ads/social-media-advertisements.htm">released</a> 3500+ ads created by the Internet Research Agency between 2015 and 2017. The Internet Research Agency is believed to have created these ads to influence the outcome of the 2016 United States presidential election, and in general influence Americans' political views. 
+           <br /><br />
+           Using some <a href="https://github.com/jiren/filter.js/tree/master">open-source Javascript libraries</a> and Bootstrap, I created a tool that can parse this unweildy dataset. It lets you pick through individual ads created by the IRA, and see how many views & clicks they received, when they were posted, to which audiences, and at what cost to the advertiser. Users can also filter and sort the database as a whole, to get a sense of which ads were most popular, or which groups of people received which sorts of ads.
+           <br /><br />
+           You can see the explorer hosted here:
+           <a href="https://russian-ad-explorer.github.io">https://russian-ad-explorer.github.io</a>.
+           <br /><br />
+           In the process of creating this data explorer, I did some pre-processing of the data as originally released by the Intelligence Committee. I took they PDF files they provided, extracted images and metadata from them, assigned that data into a JSON file, and created my own set of topic labels for each ad. I've made these datasets publicly available -- you can access them here:
+           <a href="https://github.com/russian-ad-explorer/russian-ad-datasets">https://github.com/russian-ad-explorer/russian-ad-datasets</a>.
+           <br /><br />
+           You can see a blog post summarizing my thoughts on the ad data here: <a href="{{ site.baseurl }}/blog/2018/10/20/russian-ad-analysis/">Takeaways from the Russian Ad Explorer</a>.
+
+    </div>
+</div>
+
+
+</body>
+</html>

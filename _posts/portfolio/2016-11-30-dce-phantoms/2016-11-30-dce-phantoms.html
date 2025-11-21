@@ -1,0 +1,53 @@
+---
+layout: default
+header-title: portfolio
+title:  "DCE MRI Accuracy Research"
+icon: "/resources/portfolio/dce_mri_small.png"
+date:   2017-05-30
+category: portfolio
+blurb: "Down the rabbit hole of DCE-MRI, a 3D+Time MRI imaging modality used to assess tissue permeability in tumors."
+---
+
+<body>
+
+    <div class="contentblock">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+      <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+      <div class="contenttext">
+
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/DCE_MRI_16.gif" alt="16 animated panels in a 4x4 grid showing how a constrast agent is taken up by the brain in DCE-MRI, particularly in the case of someone with a tumor. Panels start relatively monochrome and grey, but then certain parts of the panels where the tumors and veins are located get brighter."/>
+          <div class="caption"><br />A visualization of 4D DCE-MRI volume with a bolus injection in a patient with glioblastoma. Data from <a href="https://wiki.cancerimagingarchive.net/display/Public/RIDER+NEURO+MRI">public dataset</a>, gif by me.</div>
+          </div>
+
+          DCE-MRI ("dynamic contrast-enhanced magnetic resonance imaging") is a "4D" imaging set in which 3D MRI scans of a patient are captured at regular intervals, usually every 1-10 seconds. DCE-MRI usually tracks the progress of a high-contrast bolus of gadolinium injected into a patient with a certain pathology, usually cancer. This contrast agent is carried through the blood, and often accumulates in areas of aggressive tumor expansion. By analyzing the rate at which gadolinium accumulates in certain tissues, as well as the rate at which it is removed, one can infer certain dynamics about fluid transfer in these tissues.
+          <br /><br/>
+          In non-scientific terms, this means that patients are injected with a fluid ("contrast agent") that shows up brightly on MRI scans specifically where their tumor is. The speed with which this contrast agent seeps into a tumor, and then seeps out, might tell us something about how deadly or treatable that tumor is. To study this better, we take what is essentially a 3D video of someone's brain while they are being injected. This way, we can watch in real time how quickly that fluid is taken up.
+          <br /><br />
+
+          When trying to understand contrast agent flow in DCE-MRI, radiologists focus on the variables <em>ktrans</em> and <em>Ve</em>. These variables represent proxies for membrane permeability and extracellular space, respectively. Within tumors, the magnitude of these values has some correlation with patient prognosis, so they have been deemed important to measure. One acquires these variables by fitting the pixel-wise (technically, "voxel"-wise) time curves found in 4D DCE-MRI volumes using a well-known model called the <a href='http://www.thedcetool.com/science7'>Tofts model</a>. Each voxel in 3D space will thus have one ktrans and one ve associated with it, creating 3D ktrans and ve "maps" from the original 4D DCE-MRI.
+          <br /><br />
+
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/ktrans_ve.png" alt="Three panels are shown of a 2D slice of a human brain. The left two are much higher contrast than the rightmost, being totally dark in some areas and very bright in others."/>
+          <div class="caption"><br />From left to right: one slice of a ktrans map, a ve map, and the first time point of a DCE-MRI.</div>
+          </div>
+
+          There are many software packages that extract ktrans and ve maps from DCE-MRI scans, but research in my lab has suggested that A) different software packages produce different ktrans and ve values on the same scan and that B) most of these software packages have systemic biases that produce incorrect ktrans and ve values in many scenarios. To respond to this problem, I created a ktrans/ve software that outperformed all other existing packages on standardized "digital phantom" datasets. You can see a paper detailing our algorithm's superior results here: <a href="https://www.nature.com/articles/s41598-017-11554-w.pdf?origin=ppub">link</a>.
+          <br /><br />
+
+          Problem solved? Not quite. Our software performed well because of certain de-noising features it included when analyzing time-curve signals. It was thus very accurate on the digital phantoms referenced in the previous paper, which had an extremely regular spatial structure that is easy to denoise. Patient data has a very heterogenous spatial structure that is probably harder to accurately denoise than the digital phantom. So, my algorithm would probably perform worse on patient data, and maybe even worse than some of the algorithms it was tested against in the paper referenced above.
+          <br /><br />
+
+          To address this problem, I took an existing public dataset of patients with glioblastoma and DCE-MRI scans, and created "digital patient phantoms". These are phantom DCE-MRIs where ktrans and ve values are known, but are arranged in the exact same spatial structure that one would expect in a patient. I generated these by generating ktrans and ve maps from the original raw patient datasets, and then integrating them back into "ideal" 4D volumes for which the original ktrans and ve maps would by definition be ground-truth. These maps would look like the original patients, but be totally absent of noise. Because we know their ground truth values, they can then be used to evaluate the performance of different ktrans/ve fitting softwares. <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10573/105732V/Anatomical-DCE-MRI-phantoms-generated-from-glioma-patient-data/10.1117/12.2294961.short?SSO=1">A conference paper</a> detailing these phantoms was accepted to SPIE 2017, and a Dropbox folder with the phantoms can be found <a href='https://www.dropbox.com/sh/9gh4m7k7fdy7mhw/AAD5_3qCujQKNoz7pJRpimw5a?dl=0'>here</a>.
+
+          <div class='content-fullwidth'>
+          <img style="max-width:500px" src="{{ site.baseurl }}/resources/portfolio/dce_phantom.png" alt="A schematic is shown. An image of a brain with signal noise labeled 'Raw Patient Data' is connected via an arrow to a chart of a noisy time series. That image is connected to two more ktrans and ve brain images labeled 'Ground Truth', with the caption 'Fitting Algorithm.' Those images are connected back to another time series diagram with the caption 'Backward Tofts Algorithm.' This time series diagram is then linked to an noiseless brain labeled 'Noiseless Phantom'"/>
+          <div class="caption"><br />A figure from our recent accepted abstract at SPIE 2018. It represents a schematic for the creation of the QTIM/RIDER Anatomical Phantoms. 3D Ktrans and Ve Parameter Maps are generated from 4D DCE-MRI images from a patient with glioma. Those maps are used to create idealized, noiseless versions of the original input time-intensity curves. An anatomical 4D DCE-MRI results with the original parameter maps as ground-truth.</div>
+          </div>
+
+          My work on these phantoms also led to a collaboration with Intel Labs on the development of a denoising algorithm for DCE-MRI data. You can see that work published <a href="https://arxiv.org/abs/1803.01099">here</a>.
+
+
+</div>
+</div>

@@ -1,0 +1,59 @@
+---
+layout: default
+header-title: portfolio
+title:  "The Grand Banks Iceberg Mapper"
+icon: "/resources/IceScreenshot.PNG"
+date:   2016-09-14
+category: portfolio
+blurb: "134 years of iceberg sightings from shipboard sightings, aerial surveys, satellite data, and newspaper records in one interactive visualization."
+stylesheet: "/css/projects/2017-10-14-iceberg-mapper.css"
+redirect-from: /projects/2017/10/14/iceberg-mapper/
+---
+
+<body>
+
+  <div class="contentblock">
+      <div class="contentdate">{{ page.date | date: "%b %-d, %Y" }}</div>
+
+      <a href={{page.permalink}}><div class="contenthead">{{ page.title }}</div></a>
+      <div class="contenttext">
+    
+      For my thesis in Brown University's Environmental Studies department, I set upon the task of visualizing and interpeting 130+ years of iceberg sighting data in the North Atlantic ocean. This would be the largest such dataset ever collated for North Atlantic icebergs. These iceberg sightings are collected from governmental and archival datasets, and include shipboard, aerial, radar, and satellite sightings. My thesis included the visualization app below, coded in Javascript and d3.js, and discussed some climate change insights we can take away from this dataset.<br />
+      <br />
+      Using the visualization tool below, you can find a few interesting things. Although this requires more quantiative analysis to be sure, you can see that the southernmost boundary of icebergs tends to recede in recent decades (2000+) as compared to a century ago (1900-1920). The obvious hypothesis there is that warmer sea temperatures may be causing icebergs to melt earlier, but this still needs to be investigated.
+
+    </div>
+  </div>
+
+
+<div class="content-fullwidth">
+  <div class="project_container">
+    <div class="svg-container">
+      
+    </div>
+  </div>
+</div>
+
+
+
+  <div id="contentwrap">
+    <div class="contentblock" style="padding-top: 20px;">
+      <div class="contenttext">
+        The data contains a number of artifacts that would have been difficult to see without the visualization above. Iceberg sightings tend to cluster around shipping lanes -- see the northern sighting track in the year 1904 for a clear example. Iceberg sighters, employed by the International Ice Patrol, have at times had geographic limits past which they will not track icebergs. One such northern limit is obvious in the year 2003. Extension of a landfast icesheet out from Newfoundland create a "negative space" of no iceberg sightings in some years, confounding precise estimations of iceberg numbers near Newfoundland's coast. For a clear example of this, look at the year 1974. There are still some as-of-yet unexplained artifacts in certain years, such as the unusual gridded sightings in 1969-1970. Absolute counts for icebergs from all such years is likely correlated with the amount of available observers to spot them, seen most obviously in the years before 1900, and years that have northern cut-offs for iceberg sightings. <br />
+        <br />
+        The dataset is thus difficult to quantitatively analyze, but its difficulty tells interesting stories about its provenance. There is a lot of history behind the International Ice Patrol, which provided the bulk of the sightings, and the early mariner journals that listed iceberg sightings before 1900. The members of the ice patrol were scientists, but they operated in a different scientific zeitgeist than that of today, and their data collection methods are thus different from what we would expect. One can expect such difficulties with any long-term scientific dataset that involves human observers. <br />
+        <br />
+        This thesis won the Environmental Studies department's "Best Research Project" award, as well as Brown University's annual Library Innovation Prize. You can see the project covered in a URI press release <a href="http://web.uri.edu/rinsfepscor/2015/06/15/a-story-in-time-icebergs-climate-change/">here</a>, and a press release for the Libary Innovataion Prize <a href="https://blogs.brown.edu/libnews/innovation-prize-winner-2015/">here</a>.
+      </div>
+    </div>
+  </div>
+
+  <script src='http://d3js.org/d3.v3.min.js'></script>
+  <script src="http://d3js.org/topojson.v0.min.js"></script>
+  <script src="http://d3js.org/queue.v1.min.js"></script>
+  <script src="{{ site.baseurl }}/resources/projects/2017-10-14-iceberg-mapper/IceMap.js"></script>
+  <script>
+  </script>
+
+</body>
+</html>

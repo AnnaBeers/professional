@@ -1,0 +1,835 @@
+---
+---
+
+//
+// IMPORTS
+//
+
+@import "reset";
+@import "variables";
+// Syntax highlighting @import is at the bottom of this file
+
+/**************/
+/* BASE RULES */
+/**************/
+
+html {
+	height: 100%;
+	width: 100%;	
+}
+
+body {
+	background-color: $white;
+	margin-top: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+// Basics
+
+blockquote {
+	font-style: italic;
+	margin-left: 20px;
+}
+
+// Full Page Wrapper
+
+#wrap {
+	min-width: $minWidth;
+	width: 100%;
+	height: 100%;
+}
+
+#wrap a{
+	text-decoration: none;
+}
+
+// "Content" Wrapper
+
+#contentwrap{
+	margin-top: $topMargin;
+	margin-bottom: $bottomMargin;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+	min-width: 570px;
+	background-color: $white;
+
+	@include smallview {
+		// Unsure about margins, RETURN
+		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+		min-width: 0px;
+		background-color: $white;
+	}
+
+}
+
+#contentwrap a {
+	color: $black;
+	text-decoration: none;
+}
+
+#contentwrap .contentblock a {
+	color: $link;
+}
+
+// Header, Footer and ToolBar
+
+#headerwrap {
+	color: $black;
+	font-family: $helvetica;
+	font-size: 22px;
+	line-height: 18px;
+
+	@include smallview {
+		margin-bottom: 20px;
+	}
+}
+
+#footerblock {
+	font-family: $helvetica;
+	margin-top: 40px;
+	height: 5px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: $black 3px solid;
+
+	@include smallview{
+		margin-top: 20px;
+	}
+}
+
+.titleblock {
+	border: $black 3px solid;
+	text-align: center;
+	padding: 15px 0px 25px 0px;
+	font-size: 70px;
+	line-height: 80px;
+}
+
+.sub_titleblock {
+	border: $black 3px solid;
+	text-align: center;
+	padding: 15px 0px 20px 0px;
+	font-size: 30px;
+	line-height: 42px;
+}
+
+.toolbarblock {
+	font-family: $helvetica;
+	display: table;
+	line-height: 0px;
+	border: $black 3px solid;
+	border-top: $white 0px solid;
+	border-right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 18px;
+
+
+	@include smallview  {
+		border-right: $black 3px solid;
+	}
+}
+
+.toolbar-row {
+	display: inline-block;
+
+	@include smallview  {
+		display: block;
+	}
+}
+
+.toolbaritem {	
+	line-height: 36px;
+	padding: 0px 0px;
+	display: table-cell;
+	border-right: $black 3px solid;
+	color: $black;
+    min-width: 43.5px;
+    text-align: center;
+}
+
+.toolbaritem a {
+	display: block;
+	padding: 0px 5px;
+	color: $black;
+	text-decoration: none;
+}
+
+.contactbutton{
+
+	@include smallview  {
+		border-top: $black 3px solid;
+	}
+
+}
+
+.edgebutton {
+
+	@include smallview  {
+		border-right: 0px;
+	}
+
+}
+
+
+// Content
+
+.contentblock {
+	margin-top: 40px;
+	padding: 0;
+	border: $black 3px solid;
+	color: $black;
+	font-family: $georgia;
+	font-size: 15px;
+	line-height: 22px;
+	text-align: left;
+	background-color: $white;
+}
+
+/*.contentblock img{
+	width: 80%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}*/
+
+.contentdate {
+	font-family: $helvetica;
+	position: relative;
+	border: 3px	$white solid;
+	border-right: none;
+	padding: 10px;
+	top: 0px;
+	right: 0px;
+	font-size: 18px;
+	float: right;
+
+	@include smallview {
+		border-left: none;
+		text-align: center;
+		width: 100%;
+		height: auto;
+		margin-right: auto;
+		margin-left: auto;
+	float: left;  // why did float change?
+}
+
+}
+
+.content-imageblock {
+	padding: 20px 0px;
+	width: 100%;
+	margin: 0 auto;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.content-imageblock-image {
+	max-width: 400px;
+	font-size: 12px;
+	line-height: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content-imageblock img {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+.content-fullwidth {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: -50vw;
+	margin-right: -50vw;
+}
+
+.contenthead{
+	font-family: serif;
+	text-decoration: none;
+	font-size: 42px;
+	padding: 35px 20px 30px 30px;
+	margin: 15px 0px 30px 0px;
+	border-bottom: 3px solid;
+	line-height: 58px;
+	color: $black;
+
+	@include smallview{
+		font-size: 36px;
+		line-height: 44px;
+		padding: 55px 20px 25px 30px;
+		margin: 15px 0px 30px 0px;
+	}
+}
+
+.contenttext {
+	font-size: 16px;
+	line-height: 22px;
+	margin: 0px 40px 30px 40px;
+	font-family: serif; 
+	
+	@include smallview{
+		font-size: 16px;
+		margin: 0px 8% 30px 8%;
+		line-height: 24px;
+	}
+}
+
+.caption {
+	font-size: 12px;
+	line-height: 15px;
+	font-style: italic;
+	text-align: center;
+	margin: 0 auto;
+	max-width: 500px;
+
+	@include smallview{
+		max-width: 300px;
+	}
+}
+
+.contenttext h2 {
+	line-height: 36px;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.contenttext h3 {
+	line-height: 26px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.contenttext em {
+	font-style: italic;
+}
+
+.contenttext img {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+.contenttext ul {
+	list-style-type: disc;
+	margin: 15px 0;
+}
+
+.contenttext li {
+	margin-left: 40px;
+	list-style-type: disc;
+}
+
+.toc-header{
+    font-size: 18px;
+    margin-bottom: -1px;
+    margin-left: 5px;
+}
+
+.toc {
+	list-style-type:disc;
+    border: 3px solid $white;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: bold;
+    margin: 10px auto;
+
+    /* Border radius for Chrome, Webkit and other good browsers */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -border-radius: 10px;
+    border-radius: 10px;
+}
+
+.toc li {
+	font-size: 15px;
+	margin-left: 20px;
+	font-weight: normal;
+	line-height: 20px;
+}
+
+// Page 404
+
+#page404 {
+	color: $black;
+	font-family: $helvetica;
+	font-size: 18px;
+	margin: 100px 20%;	
+	text-align: center;	
+}
+
+#page404 a {
+	color: $link;
+	text-decoration: none;	
+}
+
+// Home Buttons
+
+.homewrap {
+	height: 150px;
+	width: 90%;
+	margin: 30px 5% 0px 5%;
+
+
+	@include smallview{
+		height: auto;
+		width: 100%;
+		margin: 0px 0% 0px 0%;
+	}
+}
+
+.homespacer {
+	background-color: $white;
+	min-width: 5%;
+	margin: 0;
+	padding: 0;
+	border: 0px;
+	float: inherit;
+	display: inline-block;
+	min-height: 40px;
+
+	@include smallview{
+		display: none;
+	}
+}
+
+.homeblock {
+	border: 3px $black solid;
+	color: $black;
+	font-family: Helvetica, sans-serif;
+	font-size: 18px;
+	margin: 0px;
+	line-height: 0px;
+	text-align: center;
+	width: 47.5%;
+	height: 150px;
+	display: inline-block;
+	position: relative;
+
+	@include smallview{
+		width: 90%;
+		margin-right: 5%;
+		margin-left: 5%;
+		margin-top: 0px;
+		margin-bottom: 20px;
+		height: 170px;
+	}
+
+	@include tiny-mobile{
+		height: 140px;	
+	}
+
+}
+
+.homeblock img{
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	clip: rect(0px,500px,145px,0px);
+	width: 100%;
+	height: auto;
+
+	@include smallview {
+		clip: rect(0px,520px,165px,0px);
+	}
+
+	@include tiny-mobile {
+		clip: rect(0px,520px,135px,0px);
+	}
+
+}
+
+.homecaption {
+	font-size: 22px;
+	position: absolute;
+	background: $white;
+	border: solid 3px $black;
+	color: $black;
+	display: table;
+	height: 32px;
+	width: 60%;
+	top: 38%;
+	left: 20%;
+	z-index: 1;
+	opacity: 1;
+	-webkit-transition: opacity 300ms;
+	-moz-transition: opacity 300ms;
+	-o-transition: opacity 300ms;
+	transition: opacity 300ms;
+
+	@include smallview {
+		width: 50%;
+		top: 115px;
+		left: 25%;
+		z-index: 1;
+		opacity: 1;
+		-webkit-transition: opacity 300ms;
+		-moz-transition: opacity 300ms;
+		-o-transition: opacity 300ms;
+		transition: opacity 300ms;
+	}
+
+	@include tiny-mobile {
+		top: 105px;	
+	}
+}
+
+.homecaption a {
+	text-decoration: none;	
+	color: $black	
+}
+
+.homeblock:hover .homecaption {
+	opacity: 0;
+
+	@include smallview {
+		opacity: 1;
+	} 
+
+	@include tiny-mobile {
+		opacity: 1;
+	}
+}
+
+.homecaption span {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+// Recent
+
+.recentblock {
+	padding: 30px 0px 5px 0px;
+	width: 100%;
+	margin: 0;
+	color: $black;
+	font-family: $helvetica;
+	font-size: 22px;
+	line-height: 18px;
+	text-align: left;
+
+	@include smallview {
+		padding: 25px 0px 0px 0px;
+		width: 90%;
+		margin: 0 4%;
+	}
+}
+
+.recentblock li {
+	font-size: 22px;	
+	line-height: 38px;
+	border-bottom: solid 1px $black;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.recent-category {	
+    display: inline;
+    color: $white;
+    background-color: $black;
+    padding: 6px;
+    min-width: 50px;
+}
+
+.recentblock ul {
+	margin: 0;	
+}
+
+/*.recentblock .projectblock {*/
+	/*margin*/
+/*}*/
+
+.recentblock a {
+	color: inherit	
+}
+
+// Misc
+
+.emptyblock {
+	padding: 50px 0px 25px 0px;
+	width: 100%;
+	margin: 0;
+	color: $black;
+	font-family: $helvetica;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	/*font-style: italic;*/
+
+	@include smallview {
+		padding: 0px 0px 25px 0px;
+		width: 90%;
+		margin: 0 4%;
+	}
+}
+
+// Bio
+
+.bioblock {
+	padding: 10px 30px 20px 40px;
+	margin: 0 auto;
+	color: $black;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.biopic{
+	margin-right: 35%;
+	margin-left: 35%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	@include smallview{
+		margin: 0px;
+		width: 84%;
+	}
+}
+
+.biopic img {
+	width: 100%;
+
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.bioblock a{
+	color: $link !important;
+}
+
+// Portfolio
+
+.portfolioblock {
+	padding: 40px 30px 10px 30px;
+	width: 100%;
+	margin: 0 auto;
+	color: $black;
+	font-family: $helvetica;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: left;
+
+	@include smallview{
+		margin: 10px auto;
+		float: none;
+	}
+}
+
+.portfolioimage img {
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+
+	@include smallview{
+		width: 300px;	
+		display: block;
+	}
+}
+
+// .portfolioblock img {
+// 	width: 100%;
+// 	display: block;
+// 	margin: 0 auto;
+
+// 	@include smallview{
+// 		width: 300px;	
+// 		display: block;
+// 	}
+// }
+
+.portfoliohead {
+	font-family: $helvetica;
+	text-decoration: none;
+	font-size: 40px;
+	padding: 30px 5px 30px 5px;
+	margin: 15px 5px 30px 5px;
+	border-bottom: 3px solid;
+	line-height: 42px;
+	color: $white;
+
+	@include smallview{
+		padding: 55px 20px 25px 30px;
+		margin: 15px 0px 30px 0px;
+	}
+}
+
+.portfolioblock a{
+	color: $link !important;
+}
+
+.portfoliohead2 {
+	font-family: $helvetica;
+	text-decoration: none;
+	font-size: 24px;
+	margin-bottom: 10px;
+	border-bottom: 3px solid $black;
+	line-height: 28px;
+	color: $black;
+	padding-bottom: 10px;
+}
+
+// Projects Directory
+
+.projectblock {
+	line-height: 18px;
+	border: 3px $black solid;
+	padding: 0;
+	height: 180px;
+	width: 513px; /* This is also rough */
+	margin: 30px 0 0 0;
+	color: $white;
+	font-family: $helvetica;
+	font-size: 18px;
+	position: relative;
+	background-color: $black;
+
+/*	@include smallview {
+		height: 200px;
+		width: 98%;
+		margin: 30px 0% 30px 0%;
+	}*/
+
+	@include smallview {
+		height: 325px;
+		width: 98%;
+		margin: 30px 0% 30px 0%;
+	}
+
+	@include tiny-mobile{
+		height: 300px;	
+	}
+}
+
+.projecticon {
+	width: 30%;	
+	overflow: hidden;
+	height: 100%;
+	border-right: 3px $black solid;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+
+	@include smallview {
+		border-right: none;
+		width: 100%;
+		height: 150px;
+		display: block;
+		float: none;
+	}
+}
+
+.projecticon img {
+	height: 100%;
+
+	@include smallview {
+		height: auto;
+		width: 400px;
+	}
+}
+
+.projectdesc {
+	display: inline-block;
+	width: 60%;
+	height: 100%;
+	float: left;
+	margin: 14px 22px;
+
+/*	@include smallview {
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+		float: left;
+		margin: 14px 22px;
+	}*/
+
+	@include smallview {
+		display: inline-block;
+		width: 90%;
+		height: 50%;
+		float: left;
+		margin: 14px 22px;
+	}
+
+}
+
+.projecthead {
+	font-size: 18px;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.projecttext {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+// Project Pages 
+
+.project-page-wrap {
+	font-family: $helvetica;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	font-size: 18px;	
+}
+
+.project-page-title a {
+	text-decoration: none;
+}
+
+.project-page-title {
+	color: $black;
+	width: 125px;
+	padding: 10px;
+	margin: 0 auto;
+	border: $black 3px solid;
+	text-align: center;
+
+}

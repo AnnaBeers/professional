@@ -1,0 +1,83 @@
+---
+layout: blog
+title:  "Project Report: Making DeepZine"
+date:   2021-09-01
+category: blog
+header-title: blog
+icon: "/resources/blog/2019-09-11-deepzine/page_example_alternate.png"
+blurb: "A project report on using generative adversarial networks to make synthetic book pages."
+published: false
+---
+
+<ul class="toc">
+table of contents
+<li><a href="#background">Background</a></li>
+<li><a href="#dataset">So Why Pages?</a></li>
+<li><a href="#implementation">Which Implementation?</a></li>
+<li><a href="#results">Interesting Results</a></li>
+<li><a href="#computing">A Note on Computing Resources</a></li>
+<li><a href="#art">Art Decider: Not Art</a></li>
+</ul>
+<br />
+
+
+<h2 id="releasing">Releasing DeepZine Publicly</h2>
+<br />
+
+Like all programmers, I struggle with sharing my finished work publicly. The bulk of such work comes with documenting code, which I think I am good at when I actually sit down to do so. Like most, however, I struggle with documenting code live, which means that most of the time I've spent working on this project has been documenting it and making it shareable <em>after</em> the fact. This made it feel like a chore, so, well, there's another lesson learned.
+<br /><br />
+But anyway, what did I need to do to share it? Here's a list:
+<br /><br />
+
+<h3>Code refactoring</h3>
+<br />
+The code worked, but was difficult to run experiments with. To make it work easily for myself and others, I added an intermediate class for running experiments, a command-line utility for manipulating the experiment class, several utilities related to traversing the latent space, and general refactoring to make it easier to customize the network by output resolution and number of filters. Hopefully, these changes are useful or instructive for others. They certainly were useful to me.
+<br /><br />
+
+<h3>Code documentation</h3>
+<br />
+We all know about documenting code, and its importance to having your work be understood by others. I spent a lot of time renaming variables in Zhang's original implementation for clarity, and adding sometimes paragraph-long comments offset by triple quotes to explain the workings of the code. It seems like <a href="https://softwareengineering.stackexchange.com/questions/9272/commented-short-fancy-code-vs-uncommented-longer-easy-to-understand-code-whic">people have a lot of opinions</a> about how to do comments. Should they be long, short, frequent rare, absent in favor of self-documenting code? Who knows. Obviously, my natural tendency is verbosity, so I write long comments. I also write long variable names in plain English in an effort to make code self-document, even if I suffer when it comes to line length.
+<br /><br />
+
+<h3>Creating shareable videos</h3>
+<br />
+When I wanted to create animations from code in the past, I usually created GIFs <a href="https://blog.zhaytam.com/2018/08/21/creating-gifs-using-python-pillow/">using one of Python's imaging libraries</a>. For this project, however, I wanted to make a long, very high-resolution video. GIFs are not very space efficient, add artifacts, and have fewer features (e.g time tracking) on online platforms. To get away from GIFs, I used <a href="https://ffmpeg.org/">ffmpeg</a>, an amazing but opaque command-line tool that, once mastered, can do a galaxy of audio and video-related tasks. <a href="https://hub.docker.com/r/jrottenberg/ffmpeg/">There's even a Docker container for it!</a> I used ffmpeg to combine 10,000+ images into a 40+ minute MP4 file, and uploaded that to YouTube.
+<br /><br />
+
+<h3>A Github page</h3>
+<br />
+I am very affected by a good GitHub splash page. The code inside a project could be terrible and totally undocumented, but if its authors establish a connection with me on the README.md, then I'm diving in. I wanted to replicate that feeling for other people, but hopefully with good code underneath too, and so I spent a lot of time sprucing up my own README.md.
+<br /><br />
+
+<h3>Tagging famous people</h3>
+<br />
+At long last, I wanted other people to actually see my work. But how? A friend of mine suggested uploading to Hacker News, and I had had previous success with Reddit with my <a href="https://russian-ad-explorer.github.io/?ad_id=3311">web-tool for Russian ads</a>, so I tried both. Total failure. What then?
+<br /><br />
+
+My social media crutch of choice is Twitter, so I wanted to share it there. However, I had basically no followers, and fewer who would spread my tweets into the machine learning twitter ecosystem. So, I took the time-honored strategy of just tagging famous people in replies to your tweet, and hoping one of them retweets your work to their audience. I chose <a href="https://twitter.com/JanelleCShane">Janelle Shane</a>, one of the most famous and talented creators of popular AI works (with a <a href="https://aiweirdness.com/post/186656280482/an-ai-weirdness-book">new book</a> out!); <a href="https://twitter.com/zzznah">Alex Mordvintsev</a>, one of the creators of <a href="https://github.com/google/deepdream">DeepDream</a> with a public interest in visually fascinating AI; and <a href="https://twitter.com/DrBeef_">Robbie Barat</a>, an artist that uses AI. Although I didn't do it this time, if I had tried again, I would have also tagged <a href="https://twitter.com/glagolista?lang=en">Helena Sarin</a>, an artist working with and thinking very publicly about GANs (<a href="https://www.neuralbricolage.com/the-book-of-ganesis">also has a book!</a>), and <a href=”https://twitter.com/JoanneHastieArt”>Joanna Hastie</a> who does <a href=”https://twitter.com/JoanneHastieArt/status/1182642284816453632”>amazing work</a> combining fine art painting, machines, and GAN-drived AI creations.
+<br /><br />
+
+Tagging famous people worked, and Janelle Shane retweeted my tweet to her audience (thank you!!). Soon, it was retweeted by AI people with audiences even greater than hers, as well as news aggregators, and at 680 likes became the first "viral" content I had created on this earth. It had a delayed run on Japanese AI twitter, after a prominent researcher from that world retweeted it, leading to me gain several followers from that community and a second two-days-delayed experience with virality.
+<br /><br />
+
+I'm sure a lot of people out there will roll their eyes at this advice (particularly, uh, famous people), but who cares! It's hard to get recognition for your work, especially if you don't already have a fancy title or well-connected friends. Take any edge you can get, and I'm sure people won't mind one more notification. <em>Especially</em> if it's relevant to their interests.
+<br /><br />
+
+<h3>Writing good tweets</h3>
+<br />
+Before publishing this project, I spent a lot of time reading other public ML people's tweets, trying to understand what makes someone click to see more. I also read a few articles on Tweet marketing, I guess because I'm a bit of a sociopath. Anyway, here's what I learned:
+<br /><br />
+
+Write your tweets in advance.<br /><br />
+Add images, videos, and links from your work. It takes more time, but people pay more attention.<br /><br />
+Post things early in the week, a little bit after lunch. Who would guess that people look at Twitter around then? Probably what matters more: don't drop it off on Friday or Sunday night, when you might be finishing your work up.<br /><br />
+Cite your peers and link your data/source code generously! It's polite, and shows that you're worth interacting with.<br /><br />
+If someone comments on your post with a question, respond to them! It can start interesting new discussions and entry points for others.<br /><br />
+A hard one for me: bury some of your personality. The way that I'm funny/interesting to my friends is totally useless for interacting with 99.9% of people on this Earth. Filter out some of your odd humor and write in a straightforward way. You can add it back in once you have some followers that like you for who you are, rather than for your random deep learning Twitter post.<br /><br />
+
+<h3>Should have done: Docker and Singularity containers</h3>
+<br />
+I wish I had created <a href=”https://www.docker.com/”>Docker</a> and <a href=”https://sylabs.io/docs/”>Singularity</a> containers for this project. For some background, Docker and Singularity containers let you run code without having to worry as much about missing libraries or even operating systems. All you have to do is install Docker and/or Singularity, and some admittedly <a href=”https://github.com/NVIDIA/nvidia-docker”>non-trivial additions</a> to these packages that allow them to run on your GPU.
+<br /><br />
+Creating Docker and Singularity containers for others to use is time-consuming, and there is a good argument that few enough people use them (especially outside of the machine learning world) that it's not worth the effort. But, unfortunately, my brain is broken and I <em>love</em> Docker containers, probably as a consequence of being a functional sysadmin for my last lab. I'm going to make Docker containers even if nobody uses them because if you build it, they will come. I want all of our brains to broken.
+<br /><br />
